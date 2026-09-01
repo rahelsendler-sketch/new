@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XI-4 KFC Class Chat | Ruang Kelas XI-4 & Wali Kelas Miss Eva</title>
+    <meta name="description" content="Aplikasi chat visual interaktif Kelas XI-4 dengan karakter ayam krispi sebangku (11 meja), kejar-kejaran, perang percik sambel, buku catatan fisika, dan Miss Eva.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <!-- Top Header Navigation -->
+        <header class="top-header">
+            <div class="brand-section">
+                <div class="brand-logo" id="btn-brand-home">
+                    <div class="logo-badge">🍗 XI-4</div>
+                    <div class="logo-title-wrap">
+                        <div class="logo-title">Kelas XI-4 KFC Chat</div>
+                        <div class="logo-subtitle">RUANG KELAS XI-4 • 11 MEJA SEBANGKU & MISS EVA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-center-info">
+                <div class="online-counter-badge" id="online-counter-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="online-chicken-count">33 Warga XI-4 Online</span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn-glass" id="btn-open-physics" title="Buka Catatan Fisika XI-4">
+                    <span>📓</span>
+                    <span>Catatan Fisika</span>
+                </button>
+                <button class="btn-glass btn-gold" id="btn-open-customizer" title="Kustomisasi Menu Siswa">
+                    <span>✨</span>
+                    <span>Locker Menu</span>
+                </button>
+                <button class="btn-glass btn-icon-only" id="btn-sound-toggle" title="Sound Effects ON/OFF">
+                    <span id="sound-icon">🔊</span>
+                </button>
+                <button class="btn-glass btn-red" id="btn-toggle-sidebar" title="Buka Riwayat Chat & Roster">
+                    <span>💬</span>
+                    <span>Chat Log</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Classroom Arena Canvas -->
+        <main class="arena-wrapper" id="arena-wrapper">
+            <!-- Classroom Floor & Wall Background -->
+            <div class="classroom-wall-board">
+                <!-- Large Blackboard -->
+                <div class="classroom-blackboard" id="main-blackboard">
+                    <div class="blackboard-frame">
+                        <div class="board-header">
+                            <span class="chalk-title">🏫 RUANG KELAS XI-4</span>
+                            <span class="chalk-badge" id="teacher-status-badge">WALI KELAS: MISS EVA 👩‍🏫</span>
+                        </div>
+                        <div class="chalk-notes">
+                            <div class="chalk-item">📌 <em>Materi:</em> Fisika Gerak Parabola & GLBB</div>
+                            <div class="chalk-item">🍗 <em>Menu:</em> Paha, Sayap, Dada, Kentang Goreng</div>
+                            <div class="chalk-item chalk-warning" id="blackboard-warning-msg">⚠️ Jangan lempar sambel & kejar-kejaran di kelas!</div>
+                            <div class="chalk-doodle">v = v₀ + gt + 🍗✨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11 Messy Student Desks + Teacher Desk Layer -->
+            <div class="messy-classroom-furniture" id="messy-classroom-furniture">
+                <!-- Teacher Desk for Miss Eva -->
+                <div class="classroom-desk teacher-desk" id="desk-teacher-ui" style="top: 18%; left: 8%;">
+                    <div class="desk-surface">
+                        <div class="desk-label">Meja Guru Miss Eva 👩‍🏫</div>
+                        <div class="desk-prop prop-laptop">💻</div>
+                        <div class="desk-prop prop-books">📚</div>
+                        <div class="desk-prop prop-bell" id="teacher-desk-bell" title="Klik untuk bunyikan bel guru!">🔔</div>
+                    </div>
+                </div>
+
+                <!-- Meja 1: nesi, palala, stecu -->
+                <div class="classroom-desk student-desk desk-1" style="top: 28%; left: 34%; transform: rotate(-7deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 1 (nesi, palala, stecu)</div>
+                        <div class="desk-prop prop-notebook">📓</div>
+                        <div class="desk-prop prop-fries">🍟</div>
+                    </div>
+                </div>
+
+                <!-- Meja 2: panpan, gio, monang -->
+                <div class="classroom-desk student-desk desk-2" style="top: 25%; left: 59%; transform: rotate(10deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 2 (panpan, gio, monang)</div>
+                        <div class="desk-prop prop-pencil">✏️</div>
+                        <div class="desk-prop prop-book">📖</div>
+                    </div>
+                </div>
+
+                <!-- Meja 3: enidp, kaisar, jeris -->
+                <div class="classroom-desk student-desk desk-3" style="top: 29%; left: 84%; transform: rotate(-14deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 3 (enidp, kaisar, jeris)</div>
+                        <div class="desk-prop prop-paper">📄</div>
+                        <div class="desk-prop prop-sauce">🥫</div>
+                    </div>
+                </div>
+
+                <!-- Meja 4: joeng, marmar, piman -->
+                <div class="classroom-desk student-desk desk-4" style="top: 49%; left: 14%; transform: rotate(12deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 4 (joeng, marmar, piman)</div>
+                        <div class="desk-prop prop-notebook">📒</div>
+                        <div class="desk-prop prop-ruler">📏</div>
+                    </div>
+                </div>
+
+                <!-- Meja 5: monana, briant, dominggo -->
+                <div class="classroom-desk student-desk desk-5" style="top: 51%; left: 39%; transform: rotate(-16deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 5 (monana, briant, dominggo)</div>
+                        <div class="desk-prop prop-fries">🍟</div>
+                        <div class="desk-prop prop-soda">🥤</div>
+                    </div>
+                </div>
+
+                <!-- Meja 6: rahel (Kamu), niko, noah -->
+                <div class="classroom-desk student-desk desk-6 highlight-user-desk" style="top: 47%; left: 64%; transform: rotate(6deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small highlight-label">⭐ Meja 6 (Rahel, Niko, Noah)</div>
+                        <div class="desk-prop prop-book">📚</div>
+                        <div class="desk-prop prop-notebook" id="prop-physics-book-6" title="Klik untuk nyontek catatan fisika!">📓</div>
+                    </div>
+                </div>
+
+                <!-- Meja 7: meloo, lepinas, gipan -->
+                <div class="classroom-desk student-desk desk-7" style="top: 54%; left: 87%; transform: rotate(-18deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 7 (meloo, lepinas, gipan)</div>
+                        <div class="desk-prop prop-pencil">✏️</div>
+                        <div class="desk-prop prop-eraser">🧽</div>
+                    </div>
+                </div>
+
+                <!-- Meja 8: milo, j.agung -->
+                <div class="classroom-desk student-desk desk-8" style="top: 73%; left: 18%; transform: rotate(-10deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 8 (milo, j.agung)</div>
+                        <div class="desk-prop prop-notebook">📓</div>
+                        <div class="desk-prop prop-fries">🍟</div>
+                    </div>
+                </div>
+
+                <!-- Meja 9: catty, septian, jejep -->
+                <div class="classroom-desk student-desk desk-9" style="top: 75%; left: 43%; transform: rotate(14deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 9 (catty, septian, jejep)</div>
+                        <div class="desk-prop prop-sauce">🥫</div>
+                        <div class="desk-prop prop-paper">📑</div>
+                    </div>
+                </div>
+
+                <!-- Meja 10: nia, nakula, ben elpekwu -->
+                <div class="classroom-desk student-desk desk-10" style="top: 72%; left: 68%; transform: rotate(-8deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 10 (nia, nakula, ben elpekwu)</div>
+                        <div class="desk-prop prop-book">📚</div>
+                        <div class="desk-prop prop-soda">🥤</div>
+                    </div>
+                </div>
+
+                <!-- Meja 11: salsa, geo, jon -->
+                <div class="classroom-desk student-desk desk-11" style="top: 76%; left: 89%; transform: rotate(15deg);">
+                    <div class="desk-surface">
+                        <div class="desk-label-small">Meja 11 (salsa, geo, jon)</div>
+                        <div class="desk-prop prop-fries">🍟</div>
+                        <div class="desk-prop prop-pencil">✏️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minimap Radar -->
+            <div class="minimap-container" id="minimap-container">
+                <div class="minimap-header">
+                    <span>Radar 11 Meja XI-4</span>
+                    <span id="minimap-count">33/33</span>
+                </div>
+                <canvas id="minimap-canvas" width="130" height="75"></canvas>
+            </div>
+
+            <!-- Floating Chickens Node Container -->
+            <div class="floating-arena" id="floating-arena">
+                <!-- Floating Chicken Avatars and Speech Bubbles are injected here dynamically -->
+            </div>
+        </main>
+
+        <!-- Bottom Action Dock & Chat Bar -->
+        <footer class="bottom-dock-container">
+            <!-- Emote Wheel / Classroom Action Bar -->
+            <div class="action-bar-wrap">
+                <div class="target-desk-picker-wrap">
+                    <label for="target-desk-select" class="target-label">🎯 Target Meja:</label>
+                    <select class="target-desk-select" id="target-desk-select" title="Pilih target meja untuk aksi kejar, percik sambal, dan ambil catatan">
+                        <option value="desk_6">⭐ Meja 6 (Rahel, Niko, Noah)</option>
+                        <option value="desk_1">🍗 Meja 1 (Nesi, Palala, Stecu)</option>
+                        <option value="desk_2">🍟 Meja 2 (Panpan, Gio, Monang)</option>
+                        <option value="desk_3">🌶️ Meja 3 (Enidp, Kaisar, Jeris)</option>
+                        <option value="desk_4">📏 Meja 4 (Joeng, Marmar, Piman)</option>
+                        <option value="desk_5">🍖 Meja 5 (Monana, Briant, Dominggo)</option>
+                        <option value="desk_7">🍗 Meja 7 (Meloo, Lepinas, Gipan)</option>
+                        <option value="desk_8">🍖 Meja 8 (Milo, J.Agung)</option>
+                        <option value="desk_9">🧀 Meja 9 (Catty, Septian, Jejep)</option>
+                        <option value="desk_10">🍟 Meja 10 (Nia, Nakula, Ben)</option>
+                        <option value="desk_11">🍗 Meja 11 (Salsa, Geo, Jon)</option>
+                        <option value="desk_teacher">👩‍🏫 Meja Guru Miss Eva</option>
+                    </select>
+                </div>
+                <button class="action-dock-btn btn-stealth" id="btn-action-stealth" title="Ambil catatan fisika meja target diam-diam tanpa ketahuan Miss Eva!">
+                    <span>🤫</span> Ambil Catatan Diam-diam!
+                </button>
+                <button class="action-dock-btn btn-chase" id="btn-action-chase" title="Kejar teman di meja target!">
+                    <span>🏃‍♂️</span> Kejar Meja Target!
+                </button>
+                <button class="action-dock-btn btn-splash-fight" id="btn-action-sauce" title="Percik sambal ke meja target!">
+                    <span>🌶️</span> Percik Sambel!
+                </button>
+                <button class="action-dock-btn btn-fries-throw" id="btn-action-fries" title="Lempar kentang goreng krispi ke meja target!">
+                    <span>🍟</span> Lempar Kentang!
+                </button>
+                <button class="action-dock-btn btn-notes" id="btn-action-notes" title="Nyontek catatan rumus Fisika!">
+                    <span>📓</span> Nyontek Fisika!
+                </button>
+                <button class="action-dock-btn btn-teacher-rage" id="btn-action-teacher" title="Panggil Miss Eva menegur kelas!">
+                    <span>👩‍🏫</span> Miss Eva Marah!
+                </button>
+            </div>
+
+            <!-- Chat Input Bar -->
+            <div class="chat-bar-wrap">
+                <select class="quick-phrase-select" id="quick-phrase-select" title="Pilih topik obrolan ke berbagai meja di kelas XI-4">
+                    <option value="">⚡ Pilih Opsi Obrolan Antar Meja XI-4...</option>
+
+                    <optgroup label="⭐ Obrolan Meja 6 (Rahel, Niko, Noah)">
+                        <option value="Niko, Noah, bagi jawaban nomor 4 dong, rumus gerak parabola apa ya? 📓📐">Meja 6: Minta rumus nomor 4! 📐</option>
+                        <option value="Awas Niko! Sambel gue mau kena paha ayam lu tuh wkwk! 🌶️🤣">Meja 6: Percik sambel ke Niko! 🌶️</option>
+                        <option value="Noah, balikin buku catatan fisika gue sekarang juga! 🏃‍♂️💨">Meja 6: Noah balikin buku gue! 🏃‍♂️</option>
+                        <option value="Sttt jangan ribut guys, Miss Eva lagi ngeliatin Meja 6! 🤫👩‍🏫">Meja 6: Miss Eva ngeliatin! 🤫</option>
+                    </optgroup>
+
+                    <optgroup label="🍗 Obrolan Meja 1 (Nesi, Palala, Stecu)">
+                        <option value="Nesi, Palala, bagi contekan fisika gerak parabola dong! 📐✨">Meja 1: Nesi & Palala contek rumus! 📐</option>
+                        <option value="Stecu, ayam krispi lu jangan diumpetin di kolong laci! 🍗👀">Meja 1: Stecu jangan umpetin ayam! 🍗</option>
+                        <option value="Meja 1 wangi ayam garing banget sampe kecium ke meja sebelah! 🍗😋">Meja 1: Ayam Meja 1 wangi banget! 😋</option>
+                    </optgroup>
+
+                    <optgroup label="🍟 Obrolan Meja 2 (Panpan, Gio, Monang)">
+                        <option value="Panpan, minta kentang goreng saos keju lu satu stik dong! 🍟🧀">Meja 2: Panpan minta kentang keju! 🍟</option>
+                        <option value="Gio, Monang, balikin penggaris fisika gue dong! 📏🏃‍♂️">Meja 2: Gio balikin penggaris! 📏</option>
+                        <option value="Woy Panpan jangan lari-larian nabrak meja guru nanti diamuk Miss Eva! 🏃‍♂️💨">Meja 2: Panpan jangan lari ke meja guru! 🏃‍♂️</option>
+                    </optgroup>
+
+                    <optgroup label="🌶️ Obrolan Meja 3 (Enidp, Kaisar, Jeris)">
+                        <option value="Kaisar, Jeris, bagi jawaban soal nomor 3 bab GLBB dong! 📓👀">Meja 3: Kaisar bagi jawaban no 3! 📓</option>
+                        <option value="Enidp, saos sambal paha ayam lu pedas level berapa tuh merah banget?! 🌶️🥵">Meja 3: Enidp saos lu pedas banget! 🌶️</option>
+                        <option value="Meja 3 jangan bisik-bisik mulu, Miss Eva lagi noleh tuh! 🤫">Meja 3: Jangan bisik-bisik! 🤫</option>
+                    </optgroup>
+
+                    <optgroup label="📏 Obrolan Meja 4 (Joeng, Marmar, Piman)">
+                        <option value="Joeng, Marmar, pinjam tipe-x dan penghapus dong rumus gue salah! 🧽✏️">Meja 4: Pinjam tipe-x / penghapus! 🧽</option>
+                        <option value="Piman, kentang krispi lu kriuknya kedengeran sekolahan! 🍟🤣">Meja 4: Piman kriuknya kedengeran! 🍟</option>
+                        <option value="Meja 4, oper saus BBQ sachet ke sini dong! 🍖🥫">Meja 4: Oper saus BBQ sini! 🍖</option>
+                    </optgroup>
+
+                    <optgroup label="🍖 Obrolan Meja 5 (Monana, Briant, Dominggo)">
+                        <option value="Briant, Dominggo, bagi saus BBQ sachet satu dong! 🍖😋">Meja 5: Briant minta saus BBQ! 🍖</option>
+                        <option value="Monana, contekan fisika bab GLBB udah lu catat belom? 📚">Meja 5: Monana contekan udah siap? 📚</option>
+                        <option value="Awas Briant, ada lemparan sambel meluncur ke arah meja lu! 🌶️💨">Meja 5: Lemparan sambel meluncur! 🌶️</option>
+                    </optgroup>
+
+                    <optgroup label="🍗 Obrolan Meja 7 (Meloo, Lepinas, Gipan)">
+                        <option value="Meloo, Lepinas, rumus gaya gesek dan percepatan halaman 40 apa ya? 📚">Meja 7: Rumus gaya gesek apa? 📚</option>
+                        <option value="Gipan, paha atas KFC lu juicy banget bagi sepotong dong! 🍗🤤">Meja 7: Gipan bagi ayam KFC! 🍗</option>
+                        <option value="Meja 7 ayo lari ke kantin bareng pas bel istirahat bunyi! 🏃‍♂️🍗">Meja 7: Ayo serbu kantin bareng! 🏃‍♂️</option>
+                    </optgroup>
+
+                    <optgroup label="🍖 Obrolan Meja 8 (Milo, J.Agung)">
+                        <option value="J.Agung, Milo, nomor 5 jawabannya B atau C nih? 📝">Meja 8: No 5 jawabannya apa? 📝</option>
+                        <option value="Milo, sayap BBQ lu bikin satu kelas ngiler seketika! 🍖🤤">Meja 8: Sayap BBQ bikin ngiler! 🍖</option>
+                        <option value="Meja 8 anteng banget lagi fokus nyatet atau makan ayam nih? 🍗📖">Meja 8: Lagi nyatet atau makan ayam? 🍗</option>
+                    </optgroup>
+
+                    <optgroup label="🧀 Obrolan Meja 9 (Catty, Septian, Jejep)">
+                        <option value="Catty, Septian, saos keju lumer di sayap lu enak banget bagi dong! 🧀✨">Meja 9: Bagi sayap saus keju! 🧀</option>
+                        <option value="Jejep, jangan goyang-goyangin meja dong lagi nulis rumus fisika! 📐✏️">Meja 9: Jejep jangan goyang meja! 📐</option>
+                        <option value="Meja 9, tangkap kentang goreng krispi melayang nih! 🍟🎯">Meja 9: Tangkap kentang melayang! 🍟</option>
+                    </optgroup>
+
+                    <optgroup label="🍟 Obrolan Meja 10 (Nia, Nakula, Ben Elpekwu)">
+                        <option value="Nakula, Ben, kentang goreng sultan kalian bagi sebatang dong! 🍟👑">Meja 10: Nakula & Ben bagi kentang! 🍟</option>
+                        <option value="Nia, contek rumus gerak parabola halaman 52 dong! 📐">Meja 10: Nia contek rumus parabola! 📐</option>
+                        <option value="Nakula jangan lari bawa saus sambal korek woy nanti tumpah! 🌶️🏃‍♂️">Meja 10: Nakula jangan lari bawa sambel! 🌶️</option>
+                    </optgroup>
+
+                    <optgroup label="🍗 Obrolan Meja 11 (Salsa, Geo, Jon)">
+                        <option value="Salsa, Geo, Jon, habis bel kita kejar-kejaran yuk! 🏃‍♂️💨">Meja 11: Habis bel kejar-kejaran yuk! 🏃‍♂️</option>
+                        <option value="Jon, minta saus sachet satu dong, saos Meja 6 abis! 🥫🌶️">Meja 11: Jon minta saus sachet! 🥫</option>
+                        <option value="Geo, lempar kentang krispi lu ke sini dong! 🍟😋">Meja 11: Geo lempar kentang krispi! 🍟</option>
+                    </optgroup>
+
+                    <optgroup label="👩‍🏫 Lapor / Tanya ke Miss Eva">
+                        <option value="Miss Eva, Meja 2 (Panpan, Gio, Monang) ribut banget lari-larian! 👩‍🏫📢">Lapor: Meja 2 ribut lari-larian! 📢</option>
+                        <option value="Miss Eva, nomor 4 rumus gerak parabola di papan tulis boleh diulang? 👩‍🏫📐">Tanya: Rumus parabola di papan! 📐</option>
+                        <option value="Miss Eva, Meja 10 pada makan kentang pas jam pelajaran berlangsung! 👩‍🏫🍟">Lapor: Meja 10 makan kentang! 🍟</option>
+                        <option value="Miss Eva, boleh minta izin ke toilet sebentar bu? 🚽🏃‍♂️">Izin: Mau ke toilet bu! 🚽</option>
+                    </optgroup>
+                </select>
+
+                <input type="text" id="chat-input" class="chat-input" placeholder="Ketik pesan Rahel / siswa XI-4 di sini... (tekan Enter)" maxlength="120" autocomplete="off">
+
+                <button id="btn-send-chat" class="send-btn" title="Kirim Pesan">
+                    <span>➤</span>
+                </button>
+            </div>
+        </footer>
+
+        <!-- Collapsible Sidebar (Chat Log & Students Roster per Desk) -->
+        <aside class="sidebar-drawer" id="sidebar-drawer">
+            <div class="sidebar-tabs">
+                <button class="sidebar-tab-btn active" data-tab="tab-chat-log" id="tab-btn-chat">
+                    💬 Obrolan Kelas (<span id="chat-count-badge">0</span>)
+                </button>
+                <button class="sidebar-tab-btn" data-tab="tab-roster" id="tab-btn-roster">
+                    👥 11 Meja XI-4 (<span id="roster-count-badge">33</span>)
+                </button>
+            </div>
+
+            <!-- Tab 1: Live Chat Log -->
+            <div class="sidebar-content-pane active" id="tab-chat-log">
+                <div class="chat-messages-container" id="chat-messages-container">
+                    <!-- Dynamic chat entries will appear here -->
+                </div>
+            </div>
+
+            <!-- Tab 2: Online Chickens Roster grouped by Desk -->
+            <div class="sidebar-content-pane" id="tab-roster">
+                <div class="roster-list" id="roster-list-container">
+                    <!-- Dynamic chicken members list grouped by desk -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Interactive Physics Notes Modal (Buku Catatan Fisika XI-4) -->
+        <div class="modal-overlay" id="physics-notes-modal">
+            <div class="physics-modal-card">
+                <div class="physics-modal-header">
+                    <div class="physics-notebook-title">
+                        <span>📓</span> BUKU CATATAN FISIKA KELAS XI-4 (MILIK RAHEL)
+                    </div>
+                    <button class="modal-close-btn" id="btn-close-physics">✕</button>
+                </div>
+
+                <div class="physics-notebook-body">
+                    <div class="notebook-grid-paper">
+                        <div class="notebook-pin-tag">📌 KISI-KISI & CONTEKAN RESMI XI-4</div>
+
+                        <div class="formula-section">
+                            <h3>1. Gerak Lurus Berubah Beraturan (GLBB)</h3>
+                            <div class="formula-box">
+                                <div class="formula-line">$$v_t = v_0 \pm g \cdot t$$</div>
+                                <div class="formula-line">$$h = v_0 \cdot t \pm \frac{1}{2}g \cdot t^2$$</div>
+                                <div class="formula-line">$$v_t^2 = v_0^2 \pm 2g \cdot h$$</div>
+                            </div>
+                            <p class="formula-note">*(Catatan Rahel: Kalau ayam dilempar ke atas, kecepatannya di puncak = 0 m/s!)*</p>
+                        </div>
+
+                        <div class="formula-section">
+                            <h3>2. Gerak Parabola (Lintasan Percikan Sambel)</h3>
+                            <div class="formula-box">
+                                <div class="formula-line">$$X_{\text{maks}} = \frac{v_0^2 \cdot \sin(2\alpha)}{g}$$</div>
+                                <div class="formula-line">$$Y_{\text{maks}} = \frac{v_0^2 \cdot \sin^2(\alpha)}{2g}$$</div>
+                            </div>
+                            <p class="formula-note">*(Niko nyoret: Sudut lemparan saus 45° paling pas kena jidat Noah! 🎯🤣)*</p>
+                        </div>
+
+                        <div class="formula-section">
+                            <h3>3. Hukum II Newton & Momen Inersia Ayam</h3>
+                            <div class="formula-box">
+                                <div class="formula-line">$$\Sigma F = m \cdot a$$</div>
+                                <div class="formula-line">$$F_{\text{krispi}} = m_{\text{paha}} \cdot a_{\text{garing}} + \text{Saus}^2$$</div>
+                            </div>
+                        </div>
+
+                        <div class="cheat-sticky-notes">
+                            <div class="sticky-note note-yellow">
+                                <strong>⚠️ Dilarang ketahuan Miss Eva!</strong>
+                                <p>Jawaban No. 5 = B (25 m/s). No. 6 = C (Paha Balado). Sstt!</p>
+                            </div>
+                            <div class="sticky-note note-pink">
+                                <strong>Piket Meja 6:</strong>
+                                <p>Rahel nyapu, Niko buang sampah kentang, Noah ngelap meja!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="physics-modal-footer">
+                    <button class="btn-glass" id="btn-close-physics-bottom">Tutup Catatan</button>
+                    <button class="btn-glass btn-gold" id="btn-share-notes">📢 Bagi Jawaban ke Teman Sebangku! ✨</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chicken Locker (Customizer Modal Studio) -->
+        <div class="modal-overlay" id="customizer-modal-overlay">
+            <div class="customizer-modal">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span>🍗</span> Locker Menu & Karakter Siswa XI-4
+                    </div>
+                    <button class="modal-close-btn" id="btn-close-modal">✕</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="customizer-preview-col">
+                        <div class="preview-stage">
+                            <div class="preview-svg-box" id="modal-preview-svg"></div>
+                        </div>
+
+                        <div class="nickname-input-wrap">
+                            <label for="input-chicken-name">Nama Siswa / Karakter XI-4:</label>
+                            <input type="text" id="input-chicken-name" class="nickname-input" value="rahel" maxlength="24">
+                        </div>
+                    </div>
+
+                    <div class="customizer-options-col">
+                        <div class="option-group">
+                            <div class="option-group-title">1. Pilih Potongan Ayam / Kentang:</div>
+                            <div class="options-grid-cuts" id="cuts-selector-grid"></div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-group-title">2. Varian Renyah & Percikan Saos:</div>
+                            <div class="options-grid-flavors" id="flavors-selector-grid"></div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-group-title">3. Ekspresi Wajah:</div>
+                            <div class="options-grid-expressions" id="expressions-selector-grid"></div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-group-title">4. Aksesoris Siswa & Guru:</div>
+                            <div class="options-grid-accessories" id="accessories-selector-grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-glass" id="btn-cancel-customizer">Batal</button>
+                    <button class="btn-glass btn-gold" id="btn-save-customizer">Simpan & Masuk Kelas XI-4! 🍗✨</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Particle Layer -->
+        <div class="particle-fx-layer" id="particle-layer"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/avatar-data.js"></script>
+    <script src="js/audio-fx.js"></script>
+    <script src="js/physics-engine.js"></script>
+    <script src="js/chat-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
