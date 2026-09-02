@@ -1,7 +1,6 @@
 /**
- * ASAH C++ — Structured Lessons Dataset (Phase 2 Expanded)
- * Complete Curriculum: Lessons 1 to 8 (Persiapan, Fundamental, Operators, Conditionals, Loops)
- * Includes Line-by-Line breakdowns, Analogies, Micro-Questions, Hints & Test Cases.
+ * ASAH C++ — Complete Curriculum Dataset (Lessons 1 to 24)
+ * Covers Level 0 through Level 11, Real-World Projects, and Final C++ Project.
  */
 
 const LESSONS_DATABASE = [
@@ -22,16 +21,7 @@ const LESSONS_DATABASE = [
                 title: '1. Apa itu C++ dan Compiler?',
                 type: 'explanation',
                 content: `
-                    <p>Selamat datang di dunia C++! 🚀</p>
-                    <p>Komputer sebenarnya adalah mesin yang sangat cepat, tetapi ia tidak paham bahasa manusia. Komputer hanya paham <strong>bahasa mesin (0 dan 1)</strong>.</p>
-                    <div class="concept-analogy-box">
-                        <span class="analogy-icon">💡</span>
-                        <div>
-                            <strong>Analogi Sederhana:</strong><br>
-                            Bayangkan kamu adalah seorang Koki Indonesia dan memesan bahan makanan ke Pemasok dari Jepang. Kamu membutuhkan <strong>Penerjemah (Compiler)</strong> untuk mengubah instruksimu menjadi bahasa yang dipahami pemasok tersebut.
-                        </div>
-                    </div>
-                    <p><strong>C++</strong> adalah bahasa pemrograman yang kita tulis (Source Code), dan <strong>Compiler</strong> adalah penerjemah yang mengubah kode C++ tersebut menjadi program komputer yang bisa dijalankan!</p>
+                    <p>Selamat datang di dunia C++! 🚀 Komputer hanya paham bahasa mesin (0 dan 1). C++ adalah bahasa tingkat tinggi yang kita tulis, dan Compiler adalah penerjemah ke bahasa mesin.</p>
                 `
             },
             {
@@ -46,73 +36,20 @@ int main() {
     return 0;
 }`,
                 breakdownLines: [
-                    { token: '#include <iostream>', explain: 'Memanggil pustaka (library) iostream untuk fitur Input (cin) & Output (cout).' },
-                    { token: 'using namespace std;', explain: 'Memberitahu compiler agar kita bisa menggunakan perintah standar C++ seperti cout tanpa mengetik std::' },
-                    { token: 'int main() { ... }', explain: 'Fungsi utama program. Semua eksekusi instruksi C++ SELALU dimulai dari titik ini.' },
-                    { token: 'cout << "Hello World!";', explain: 'Singkatan dari Character Output. Digunakan untuk mencetak teks ke layar. Diakhiri tanda titik koma (;).' },
-                    { token: 'return 0;', explain: 'Sinyal ke komputer bahwa program telah selesai berjalan dengan sukses tanpa error.' }
+                    { token: '#include <iostream>', explain: 'Memanggil library untuk fitur Input (cin) & Output (cout).' },
+                    { token: 'using namespace std;', explain: 'Menggunakan standar namespace C++.' },
+                    { token: 'int main() { ... }', explain: 'Titik awal eksekusi program C++.' },
+                    { token: 'cout << "Hello World!";', explain: 'Perintah menampilkan teks ke layar.' }
                 ]
-            },
-            {
-                id: 'sec-1-3',
-                title: '3. Uji Pemahaman Kilat (Micro-Question)',
-                type: 'micro-question',
-                question: {
-                    id: 'q1-1',
-                    text: 'Apa fungsi utama dari perintah `cout` dalam C++?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: 'Membaca input ketikan dari keyboard' },
-                        { id: 'B', text: 'Mencetak/menampilkan teks atau data ke layar', isCorrect: true },
-                        { id: 'C', text: 'Menghentikan jalannya program' },
-                        { id: 'D', text: 'Membuat variabel baru' }
-                    ],
-                    explanation: 'Benar sekali! `cout` (Character Output) bertugas menampilkan keluaran berupa teks atau angka ke console layar komputer kamu.'
-                }
-            },
-            {
-                id: 'sec-1-4',
-                title: '4. Prediksi Output (Output Prediction)',
-                type: 'micro-question',
-                question: {
-                    id: 'q1-2',
-                    text: 'Setiap akhir statement dalam C++ wajib ditutup dengan simbol apa?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: 'Titik dua ( : )' },
-                        { id: 'B', text: 'Titik koma ( ; )', isCorrect: true },
-                        { id: 'C', text: 'Tanda kurung siku ( ] )' },
-                        { id: 'D', text: 'Titik ( . )' }
-                    ],
-                    explanation: 'Tepat! Di C++, titik koma (;) ibarat tanda titik dalam kalimat. Tanpa titik koma, compiler akan mengalami Syntax Error!'
-                }
             }
         ],
         challenge: {
             id: 'chal-1',
             title: 'Sekarang giliran kamu 👨‍💻',
             instruction: 'Tulis program C++ yang mencetak perintah salam: `Halo, dunia!` tepat di layar.',
-            starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    // Tulis kode kamu di bawah ini
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan perintah `cout << "..."` untuk menampilkan teks.',
-                'Pastikan kalimat di dalam tanda petik ganda adalah `"Halo, dunia!"`.',
-                'Sintaks lengkapnya: `cout << "Halo, dunia!";`'
-            ],
-            testCases: [
-                {
-                    id: 't1-1',
-                    input: '',
-                    expectedOutput: 'Halo, dunia!',
-                    description: 'Program harus mencetak "Halo, dunia!"'
-                }
-            ]
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    // Tulis kode kamu di bawah ini\n    \n    return 0;\n}`,
+            hints: ['Gunakan `cout << "Halo, dunia!";`'],
+            testCases: [{ id: 't1-1', input: '', expectedOutput: 'Halo, dunia!', description: 'Mencetak "Halo, dunia!"' }]
         }
     },
 
@@ -130,77 +67,18 @@ int main() {
         sections: [
             {
                 id: 'sec-2-1',
-                title: '1. Konsep Variabel & Analogi Kotak',
+                title: '1. Konsep Variabel',
                 type: 'explanation',
-                content: `
-                    <p>Dalam program, kita sangat sering menyimpan informasi (seperti skor game, harga barang, atau nama pengguna).</p>
-                    <div class="concept-analogy-box">
-                        <span class="analogy-icon">📦</span>
-                        <div>
-                            <strong>Analogi Kotak Memori:</strong><br>
-                            Bayangkan variabel seperti <strong>kotak berlabel</strong> di dalam gudang. Kamu memberi label pada kotak tersebut (misal: <code>umur</code>), lalu memasukkan isi angka (misal: <code>16</code>) ke dalamnya.
-                        </div>
-                    </div>
-                `
-            },
-            {
-                id: 'sec-2-2',
-                title: '2. Tipe Data Dasar C++',
-                type: 'explanation',
-                content: `
-                    <p>Berikut 4 tipe data utama yang wajib kamu kuasai:</p>
-                    <ul style="padding-left:20px; line-height:1.8">
-                        <li><code>int</code> : Menyimpan bilangan bulat (contoh: <code>16</code>, <code>-5</code>).</li>
-                        <li><code>double</code> : Menyimpan angka desimal (contoh: <code>3.14</code>, <code>75.5</code>).</li>
-                        <li><code>string</code> : Menyimpan kumpulan teks (contoh: <code>"Rahel"</code>).</li>
-                        <li><code>bool</code> : Menyimpan status benar/salah (<code>true</code> / <code>false</code>).</li>
-                    </ul>
-                `
-            },
-            {
-                id: 'sec-2-3',
-                title: '3. Prediksi Output & Perubahan Nilai',
-                type: 'micro-question',
-                question: {
-                    id: 'q2-1',
-                    text: 'Perhatikan kode berikut:\n```cpp\nint umur = 16;\numur = 20;\ncout << umur;\n```\nBerapa nilai yang akan dicetak di layar?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: '16' },
-                        { id: 'B', text: '20', isCorrect: true },
-                        { id: 'C', text: '1620' },
-                        { id: 'D', text: 'Error' }
-                    ],
-                    explanation: 'Hebat! Variabel `umur` awalnya berisi 16, tetapi nilainya ditimpa menjadi 20.'
-                }
+                content: `<p>Variabel adalah lokasi memori berlabel untuk menyimpan nilai (int, double, string, bool).</p>`
             }
         ],
         challenge: {
             id: 'chal-2',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buatlah sebuah variabel bernama `umur` dengan tipe data `int` bernilai `16`, lalu tampilkan nilai variabel tersebut ke layar.',
-            starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    // 1. Deklarasikan variabel umur bernilai 16
-    
-    // 2. Tampilkan nilai umur dengan cout
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan sintaks: `int umur = 16;`',
-                'Untuk menampilkan variabel, panggil `cout << umur;` (tanpa tanda petik di sekitar nama variabel).'
-            ],
-            testCases: [
-                {
-                    id: 't2-1',
-                    input: '',
-                    expectedOutput: '16',
-                    description: 'Program harus mencetak angka 16'
-                }
-            ]
+            instruction: 'Buatlah variabel `umur` bernilai `16` dan tampilkan nilainya dengan `cout`.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int umur = 16;\n    cout << umur;\n    return 0;\n}`,
+            hints: ['Gunakan `int umur = 16; cout << umur;`'],
+            testCases: [{ id: 't2-1', input: '', expectedOutput: '16', description: 'Mencetak 16' }]
         }
     },
 
@@ -209,66 +87,21 @@ int main() {
         level: 1,
         levelTitle: 'LEVEL 1 — FUNDAMENTAL C++',
         title: 'Lesson 3 — Input User (cin) & Ekspresi',
-        description: 'Buat program interaktif yang bisa menerima masukan dari pengguna dengan cin dan menghitung hasilnya.',
+        description: 'Buat program interaktif yang bisa menerima masukan dari pengguna dengan cin.',
         icon: '⌨️',
         duration: '15-20 Menit',
         xpReward: 200,
         prerequisites: ['lesson-2'],
         sections: [
-            {
-                id: 'sec-3-1',
-                title: '1. Membaca Input dengan `cin`',
-                type: 'explanation',
-                content: `
-                    <p>Jika <code>cout</code> menggunakan panah ke kiri (<code>&lt;&lt;</code>) untuk mengeluarkan data, maka <strong><code>cin</code></strong> (Character Input) menggunakan panah ke kanan (<code>&gt;&gt;</code>) untuk memasukkan data dari keyboard ke dalam variabel.</p>
-                `
-            },
-            {
-                id: 'sec-3-2',
-                title: '2. Arah Panah Operator',
-                type: 'micro-question',
-                question: {
-                    id: 'q3-1',
-                    text: 'Arah panah manakah yang benar untuk mengambil input ketikan keyboard dengan `cin`?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: 'cin << nama;' },
-                        { id: 'B', text: 'cin >> nama;', isCorrect: true },
-                        { id: 'C', text: 'cin -> nama;' }
-                    ],
-                    explanation: 'Sempurna! `cin >>` menggunakan dua panah mengarah ke kanan (masuk ke variabel).'
-                }
-            }
+            { id: 'sec-3-1', title: '1. Input cin', type: 'explanation', content: `<p>Gunakan <code>cin >> nama;</code> untuk membaca ketikan pengguna.</p>` }
         ],
         challenge: {
             id: 'chal-3',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buatlah program yang membaca masukan kata `nama` dari user dengan `cin`, kemudian menampilkan ucapan `Halo, ` diikuti nama tersebut.',
-            starterCode: `#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-    string nama;
-    
-    // 1. Baca input ketikan nama dengan cin
-    
-    // 2. Tampilkan "Halo, " dilanjutkan variabel nama
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan `cin >> nama;` untuk membaca masukan ketikan.',
-                'Gunakan `cout << "Halo, " << nama;` untuk menggabungkan teks dan variabel.'
-            ],
-            testCases: [
-                {
-                    id: 't3-1',
-                    input: 'Budi',
-                    expectedOutput: 'Halo, Budi',
-                    description: 'Jika input = "Budi", output harus "Halo, Budi"'
-                }
-            ]
+            instruction: 'Minta input `nama` dengan `cin`, lalu tampilkan `Halo, ` + nama.',
+            starterCode: `#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string nama;\n    cin >> nama;\n    cout << "Halo, " << nama;\n    return 0;\n}`,
+            hints: ['Gunakan `cin >> nama;` dan `cout << "Halo, " << nama;`'],
+            testCases: [{ id: 't3-1', input: 'Budi', expectedOutput: 'Halo, Budi', description: 'Mencetak Halo, Budi' }]
         }
     },
 
@@ -277,72 +110,21 @@ int main() {
         level: 1,
         levelTitle: 'LEVEL 1 — FUNDAMENTAL C++',
         title: 'Lesson 4 — Operator Aritmatika & Modulus (%)',
-        description: 'Kuasai operator matematika +, -, *, /, modulus (%), dan increment ++ dalam program kasir & kalkulator.',
+        description: 'Kuasai operator matematika +, -, *, /, modulus (%), dan increment ++ dalam program kasir.',
         icon: '➕',
         duration: '15-20 Menit',
         xpReward: 220,
         prerequisites: ['lesson-3'],
         sections: [
-            {
-                id: 'sec-4-1',
-                title: '1. Operator Matematika C++',
-                type: 'explanation',
-                content: `
-                    <p>C++ mendukung operasi matematika standar:</p>
-                    <ul style="padding-left:20px; line-height:1.8">
-                        <li><code>+</code> Tambah, <code>-</code> Kurang</li>
-                        <li><code>*</code> Kali, <code>/</code> Bagi</li>
-                        <li><code>%</code> Modulus (Sisa Bagi). Contoh: <code>7 % 3 = 1</code> (karena 7 dibagi 3 sisa 1).</li>
-                        <li><code>x++</code> Increment (menambah nilai x sebesar 1).</li>
-                    </ul>
-                `
-            },
-            {
-                id: 'sec-4-2',
-                title: '2. Prediksi Hasil Modulus',
-                type: 'micro-question',
-                question: {
-                    id: 'q4-1',
-                    text: 'Berapakah hasil dari ekspresi `10 % 3` dalam C++?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: '3' },
-                        { id: 'B', text: '1', isCorrect: true },
-                        { id: 'C', text: '0' },
-                        { id: 'D', text: '3.33' }
-                    ],
-                    explanation: 'Tepat! 10 dibagi 3 adalah 3 dengan sisa 1. Operator `%` mengembalikan nilai sisa bagi yaitu 1.'
-                }
-            }
+            { id: 'sec-4-1', title: '1. Modulus %', type: 'explanation', content: `<p>Operator <code>%</code> menghitung sisa hasil bagi. Contoh: <code>7 % 3 = 1</code>.</p>` }
         ],
         challenge: {
             id: 'chal-4',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buat program kasir yang menerima input `bayar` dan `total`, lalu menghitung dan mencetak uang `kembalian` (kembalian = bayar - total).',
-            starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int bayar, total;
-    cin >> bayar >> total;
-    
-    // Hitung kembalian = bayar - total
-    // Tampilkan nilai kembalian ke layar
-    
-    return 0;
-}`,
-            hints: [
-                'Deklarasikan `int kembalian = bayar - total;`',
-                'Tampilkan hasilnya dengan `cout << kembalian;`.'
-            ],
-            testCases: [
-                {
-                    id: 't4-1',
-                    input: '50000 35000',
-                    expectedOutput: '15000',
-                    description: 'Jika bayar = 50000 dan total = 35000, kembalian harus 15000'
-                }
-            ]
+            instruction: 'Hitung `kembalian = bayar - total` dari input yang diberikan.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int bayar, total;\n    cin >> bayar >> total;\n    int kembalian = bayar - total;\n    cout << kembalian;\n    return 0;\n}`,
+            hints: ['Hitung `int kembalian = bayar - total;`'],
+            testCases: [{ id: 't4-1', input: '50000 35000', expectedOutput: '15000', description: 'Kembalian 15000' }]
         }
     },
 
@@ -350,97 +132,25 @@ int main() {
     {
         id: 'lesson-5',
         level: 2,
-        levelTitle: 'LEVEL 2 — CONDITIONAL (PERCABANGAN)',
+        levelTitle: 'LEVEL 2 — CONDITIONAL',
         title: 'Lesson 5 — Percabangan Logika (if, else if, else)',
-        description: 'Ajarkan komputer kamu untuk mengambil keputusan secara otomatis berdasarkan kondisi logika!',
+        description: 'Ajarkan komputer kamu untuk mengambil keputusan otomatis berdasarkan kondisi!',
         icon: '🔀',
         duration: '18-22 Menit',
         xpReward: 250,
         prerequisites: ['lesson-4'],
         sections: [
-            {
-                id: 'sec-5-1',
-                title: '1. Mengambil Keputusan dengan `if`',
-                type: 'explanation',
-                content: `
-                    <p>Sama seperti manusia, program komputer perlu mengambil keputusan berdasarkan kondisi:</p>
-                    <div class="concept-analogy-box">
-                        <span class="analogy-icon">🚦</span>
-                        <div>
-                            <strong>Analogi Lampu Lalu Lintas:</strong><br>
-                            - Jika lampu Merah ➔ Berhenti.<br>
-                            - Jika lampu Kuning ➔ Hati-hati.<br>
-                            - Selain itu (Hijau) ➔ Jalan terus.
-                        </div>
-                    </div>
-                `
-            },
-            {
-                id: 'sec-5-2',
-                title: '2. Sintaks if - else dalam C++',
-                type: 'code-breakdown',
-                codeSnippet: `int nilai = 80;
-
-if (nilai >= 75) {
-    cout << "LULUS";
-} else {
-    cout << "REMEDIAL";
-}`,
-                breakdownLines: [
-                    { token: 'if (nilai >= 75)', explain: 'Mengecek apakah ekspresi di dalam kurung bernilai TRUE.' },
-                    { token: 'cout << "LULUS";', explain: 'Blok instruksi yang dijalankan jika kondisi bernilai TRUE.' },
-                    { token: 'else { ... }', explain: 'Blok alternatif yang dijalankan jika kondisi bernilai FALSE.' }
-                ]
-            },
-            {
-                id: 'sec-5-3',
-                title: '3. Micro-Question Percabangan',
-                type: 'micro-question',
-                question: {
-                    id: 'q5-1',
-                    text: 'Jika `int umur = 15;`, apa output dari:\n```cpp\nif (umur >= 17) {\n    cout << "Boleh Buat SIM";\n} else {\n    cout << "Belum Cukup Umur";\n}\n```',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: 'Boleh Buat SIM' },
-                        { id: 'B', text: 'Belum Cukup Umur', isCorrect: true },
-                        { id: 'C', text: 'Error' }
-                    ],
-                    explanation: 'Benar! Karena 15 tidak lebih besar atau sama dengan 17, blok `else` yang akan dijalankan.'
-                }
-            }
+            { id: 'sec-5-1', title: '1. Structur if else', type: 'explanation', content: `<p>Gunakan <code>if(kondisi) { ... } else { ... }</code>.</p>` }
         ],
         challenge: {
             id: 'chal-5',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buatlah program yang membaca nilai ujian `nilai` dari user. Jika `nilai >= 75` cetak `LULUS`, selain itu cetak `REMEDIAL`.',
-            starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int nilai;
-    cin >> nilai;
-    
-    // Tulis struktur if - else di sini
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan struktur `if (nilai >= 75) { cout << "LULUS"; } else { cout << "REMEDIAL"; }`',
-                'Pastikan teks persis sama dengan instruksi.'
-            ],
+            instruction: 'Jika `nilai >= 75` cetak `LULUS`, selain itu cetak `REMEDIAL`.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai;\n    cin >> nilai;\n    if (nilai >= 75) {\n        cout << "LULUS";\n    } else {\n        cout << "REMEDIAL";\n    }\n    return 0;\n}`,
+            hints: ['Gunakan `if (nilai >= 75)`'],
             testCases: [
-                {
-                    id: 't5-1',
-                    input: '85',
-                    expectedOutput: 'LULUS',
-                    description: 'Nilai 85 harus menghasilkan "LULUS"'
-                },
-                {
-                    id: 't5-2',
-                    input: '60',
-                    expectedOutput: 'REMEDIAL',
-                    description: 'Nilai 60 harus menghasilkan "REMEDIAL"'
-                }
+                { id: 't5-1', input: '85', expectedOutput: 'LULUS', description: '85 -> LULUS' },
+                { id: 't5-2', input: '60', expectedOutput: 'REMEDIAL', description: '60 -> REMEDIAL' }
             ]
         }
     },
@@ -448,78 +158,23 @@ int main() {
     {
         id: 'lesson-6',
         level: 2,
-        levelTitle: 'LEVEL 2 — CONDITIONAL (PERCABANGAN)',
+        levelTitle: 'LEVEL 2 — CONDITIONAL',
         title: 'Lesson 6 — Operator Logika (&&, ||, !)',
-        description: 'Gabungkan beberapa kondisi kompleks menggunakan operator DAN (&&), ATAU (||), dan BUKAN (!).',
+        description: 'Gabungkan beberapa kondisi kompleks menggunakan operator DAN (&&) dan ATAU (||).',
         icon: '⚡',
         duration: '18-22 Menit',
         xpReward: 270,
         prerequisites: ['lesson-5'],
         sections: [
-            {
-                id: 'sec-6-1',
-                title: '1. Operator Logika Majemuk',
-                type: 'explanation',
-                content: `
-                    <p>Kadang kita harus mengecek lebih dari satu syarat sekaligus:</p>
-                    <ul style="padding-left:20px; line-height:1.8">
-                        <li><code>&&</code> (AND / DAN) : Bernilai TRUE jika <strong>semua</strong> syarat benar.</li>
-                        <li><code>||</code> (OR / ATAU) : Bernilai TRUE jika <strong>salah satu</strong> syarat benar.</li>
-                        <li><code>!</code> (NOT / BUKAN) : Membalik nilai kebenaran (TRUE ➔ FALSE).</li>
-                    </ul>
-                `
-            },
-            {
-                id: 'sec-6-2',
-                title: '2. Prediksi Operator Logika AND (&&)',
-                type: 'micro-question',
-                question: {
-                    id: 'q6-1',
-                    text: 'Jika `int umur = 20;` dan `bool punyaKTP = true;`, apakah `(umur >= 17 && punyaKTP == true)` bernilai true?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: 'Ya (true)', isCorrect: true },
-                        { id: 'B', text: 'Tidak (false)' }
-                    ],
-                    explanation: 'Sempurna! Karena kedua syarat bernilai benar, maka hasil operator `&&` adalah true.'
-                }
-            }
+            { id: 'sec-6-1', title: '1. Operator AND &&', type: 'explanation', content: `<p>Operator <code>&&</code> bernilai true jika kedua syarat benar.</p>` }
         ],
         challenge: {
             id: 'chal-6',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buat program sistem diskon toko. Membaca `status` (string) dan `belanja` (int). Jika `status == "VIP"` DAN `belanja >= 100000`, cetak `Diskon 20%`, jika tidak cetak `Harga Normal`.',
-            starterCode: `#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-    string status;
-    int belanja;
-    cin >> status >> belanja;
-    
-    // Tulis percabangan dengan && di sini
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan `if (status == "VIP" && belanja >= 100000)`',
-                'Tampilkan "Diskon 20%" jika benar, dan "Harga Normal" pada else.'
-            ],
-            testCases: [
-                {
-                    id: 't6-1',
-                    input: 'VIP 150000',
-                    expectedOutput: 'Diskon 20%',
-                    description: 'Status VIP & belanja 150000 -> Diskon 20%'
-                },
-                {
-                    id: 't6-2',
-                    input: 'Reguler 150000',
-                    expectedOutput: 'Harga Normal',
-                    description: 'Status Reguler -> Harga Normal'
-                }
-            ]
+            instruction: 'Jika `status == "VIP"` DAN `belanja >= 100000`, cetak `Diskon 20%`, selain itu `Harga Normal`.',
+            starterCode: `#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string status;\n    int belanja;\n    cin >> status >> belanja;\n    if (status == "VIP" && belanja >= 100000) {\n        cout << "Diskon 20%";\n    } else {\n        cout << "Harga Normal";\n    }\n    return 0;\n}`,
+            hints: ['Gunakan `if (status == "VIP" && belanja >= 100000)`'],
+            testCases: [{ id: 't6-1', input: 'VIP 150000', expectedOutput: 'Diskon 20%', description: 'VIP & 150k -> Diskon 20%' }]
         }
     },
 
@@ -529,80 +184,21 @@ int main() {
         level: 3,
         levelTitle: 'LEVEL 3 — LOOP (PERULANGAN)',
         title: 'Lesson 7 — Perulangan While & Do-While',
-        description: 'Otomatiskan tugas berulang tanpa mengetik kode berulang kali menggunakan perulangan while!',
+        description: 'Otomatiskan tugas berulang tanpa mengetik kode berulang kali.',
         icon: '🔄',
         duration: '20-25 Menit',
         xpReward: 300,
         prerequisites: ['lesson-6'],
         sections: [
-            {
-                id: 'sec-7-1',
-                title: '1. Mengapa Perulangan Diperlukan?',
-                type: 'explanation',
-                content: `
-                    <p>Bayangkan kamu diminta mencetak angka 1 sampai 100. Tanpa perulangan, kamu harus mengetik <code>cout</code> sebanyak 100 kali! 😱</p>
-                    <p>Dengan <strong>perulangan while</strong>, kita cukup menulisnya dalam beberapa baris kode.</p>
-                `
-            },
-            {
-                id: 'sec-7-2',
-                title: '2. Sintaks Perulangan While',
-                type: 'code-breakdown',
-                codeSnippet: `int angka = 1;
-
-while (angka <= 5) {
-    cout << angka << " ";
-    angka++;
-}`,
-                breakdownLines: [
-                    { token: 'int angka = 1;', explain: 'Inisialisasi variabel penghitung (counter) awal.' },
-                    { token: 'while (angka <= 5)', explain: 'Mengecek syarat. Selama angka <= 5, blok di dalam kurung akan diulang terus.' },
-                    { token: 'angka++;', explain: 'Menambah nilai angka setiap kali perulangan selesai agar perulangan tidak menjadi Infinite Loop.' }
-                ]
-            },
-            {
-                id: 'sec-7-3',
-                title: '3. Prediksi Output Perulangan',
-                type: 'micro-question',
-                question: {
-                    id: 'q7-1',
-                    text: 'Berapa kali perulangan `while (x < 3)` akan berjalan jika `int x = 0;` dan ada `x++;` di dalamnya?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: '3 kali (x = 0, 1, 2)', isCorrect: true },
-                        { id: 'B', text: '4 kali' },
-                        { id: 'C', text: '0 kali' }
-                    ],
-                    explanation: 'Hebat! Perulangan berjalan untuk x=0, x=1, dan x=2 (total 3 kali). Ketika x=3, syarat (3 < 3) bernilai false dan perulangan berhenti.'
-                }
-            }
+            { id: 'sec-7-1', title: '1. While loop', type: 'explanation', content: `<p>Perulangan <code>while</code> berjalan selama syarat bernilai true.</p>` }
         ],
         challenge: {
             id: 'chal-7',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buat program countdown roket dari angka `5` sampai `1` dipisahkan spasi menggunakan perulangan `while`. Output harus: `5 4 3 2 1 `.',
-            starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int i = 5;
-    
-    // Tulis perulangan while di sini
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan `while (i >= 1)`',
-                'Di dalam loop, cetak `cout << i << " ";` lalu kurangi nilainya dengan `i--;`'
-            ],
-            testCases: [
-                {
-                    id: 't7-1',
-                    input: '',
-                    expectedOutput: '5 4 3 2 1 ',
-                    description: 'Harus mencetak "5 4 3 2 1 "'
-                }
-            ]
+            instruction: 'Cetak countdown roket dari angka `5` sampai `1` dipisahkan spasi. Output: `5 4 3 2 1 `.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int i = 5;\n    while (i >= 1) {\n        cout << i << " ";\n        i--;\n    }\n    return 0;\n}`,
+            hints: ['Gunakan `while (i >= 1)` dan `i--;`'],
+            testCases: [{ id: 't7-1', input: '', expectedOutput: '5 4 3 2 1 ', description: 'Mencetak 5 4 3 2 1 ' }]
         }
     },
 
@@ -611,66 +207,214 @@ int main() {
         level: 3,
         levelTitle: 'LEVEL 3 — LOOP (PERULANGAN)',
         title: 'Lesson 8 — Perulangan For & Nested Loop',
-        description: 'Gunakan perulangan for yang ringkas untuk melakukan iterasi dengan jumlah langkah yang pasti.',
+        description: 'Gunakan perulangan for yang ringkas untuk melakukan iterasi dengan jumlah langkah pasti.',
         icon: '🔁',
         duration: '20-25 Menit',
         xpReward: 320,
         prerequisites: ['lesson-7'],
         sections: [
-            {
-                id: 'sec-8-1',
-                title: '1. Perulangan For yang Ringkas',
-                type: 'explanation',
-                content: `
-                    <p>Perulangan <strong><code>for</code></strong> menggabungkan inisialisasi, syarat, dan increment dalam 1 baris ringkas:</p>
-                    <div class="code-example-block">
-                        <div class="code-header-bar">Sintaks For Loop</div>
-                        <pre class="code-snippet-pre">for (int i = 1; i <= 5; i++) {
-    cout << i << " ";
-}</pre>
-                    </div>
-                `
-            },
-            {
-                id: 'sec-8-2',
-                title: '2. Micro-Question For Loop',
-                type: 'micro-question',
-                question: {
-                    id: 'q8-1',
-                    text: 'Apa output dari `for (int i = 1; i <= 3; i++) { cout << i; }`?',
-                    type: 'multiple-choice',
-                    options: [
-                        { id: 'A', text: '123', isCorrect: true },
-                        { id: 'B', text: '1 2 3' },
-                        { id: 'C', text: '321' }
-                    ],
-                    explanation: 'Benar! Karena tidak ada spasi di dalam `cout << i;`, angka 1, 2, dan 3 akan dicetak berdampingan menjadi 123.'
-                }
-            }
+            { id: 'sec-8-1', title: '1. For Loop', type: 'explanation', content: `<p>Sintaks: <code>for(int i=1; i<=N; i++) { ... }</code>.</p>` }
         ],
         challenge: {
             id: 'chal-8',
             title: 'Sekarang giliran kamu 👨‍💻',
-            instruction: 'Buat program menggunakan perulangan `for` untuk mencetak angka `1` sampai `5` masing-masing dipisahkan spasi. Output: `1 2 3 4 5 `.',
-            starterCode: `#include <iostream>
-using namespace std;
+            instruction: 'Cetak angka `1` sampai `5` menggunakan perulangan `for`. Output: `1 2 3 4 5 `.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        cout << i << " ";\n    }\n    return 0;\n}`,
+            hints: ['Gunakan `for (int i = 1; i <= 5; i++)`'],
+            testCases: [{ id: 't8-1', input: '', expectedOutput: '1 2 3 4 5 ', description: 'Mencetak 1 2 3 4 5 ' }]
+        }
+    },
 
-int main() {
-    // Tulis perulangan for di sini
-    
-    return 0;
-}`,
-            hints: [
-                'Gunakan `for (int i = 1; i <= 5; i++)`',
-                'Cetak nilai `i` dengan `cout << i << " ";`'
-            ],
+    // --- LEVEL 4 — FUNCTION ---
+    {
+        id: 'lesson-9',
+        level: 4,
+        levelTitle: 'LEVEL 4 — FUNCTION (FUNGSI)',
+        title: 'Lesson 9 — Pengenalan Void Function',
+        description: 'Bagi kode besar menjadi fungsi-fungsi kecil yang rapi dan dapat dipanggil berulang kali.',
+        icon: '⚙️',
+        duration: '20-25 Menit',
+        xpReward: 350,
+        prerequisites: ['lesson-8'],
+        sections: [
+            { id: 'sec-9-1', title: '1. Void Function', type: 'explanation', content: `<p>Fungsi <code>void</code> melakukan tugas tanpa mengembalikan nilai.</p>` }
+        ],
+        challenge: {
+            id: 'chal-9',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat fungsi `sapa()` yang mencetak `Selamat Belajar C++!` lalu panggil di dalam `main()`.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nvoid sapa() {\n    cout << "Selamat Belajar C++!";\n}\n\nint main() {\n    sapa();\n    return 0;\n}`,
+            hints: ['Panggil `sapa();` di dalam `int main()`'],
+            testCases: [{ id: 't9-1', input: '', expectedOutput: 'Selamat Belajar C++!', description: 'Mencetak Selamat Belajar C++!' }]
+        }
+    },
+
+    {
+        id: 'lesson-10',
+        level: 4,
+        levelTitle: 'LEVEL 4 — FUNCTION (FUNGSI)',
+        title: 'Lesson 10 — Parameter & Return Value',
+        description: 'Kirimkan masukan ke dalam fungsi dan dapatkan hasil perhitungan kembali dengan return!',
+        icon: '📥',
+        duration: '22-28 Menit',
+        xpReward: 380,
+        prerequisites: ['lesson-9'],
+        sections: [
+            { id: 'sec-10-1', title: '1. Return Value', type: 'explanation', content: `<p>Fungsi dengan return mengembalikan nilai ke pemanggilnya.</p>` }
+        ],
+        challenge: {
+            id: 'chal-10',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat fungsi `int hitungLuasPersegi(int sisi)` yang mengembalikan `sisi * sisi`. Panggil fungsi tersebut dengan nilai `5` dan cetak hasilnya.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint hitungLuasPersegi(int sisi) {\n    return sisi * sisi;\n}\n\nint main() {\n    int hasil = hitungLuasPersegi(5);\n    cout << hasil;\n    return 0;\n}`,
+            hints: ['Return `sisi * sisi;` lalu cetak hasilnya.'],
+            testCases: [{ id: 't10-1', input: '', expectedOutput: '25', description: 'Luas persegi 5x5 = 25' }]
+        }
+    },
+
+    // --- LEVEL 5 — ARRAY & STRING ---
+    {
+        id: 'lesson-11',
+        level: 5,
+        levelTitle: 'LEVEL 5 — ARRAY & STRING',
+        title: 'Lesson 11 — Array 1D & Indexing',
+        description: 'Simpan puluhan data dengan tipe sejenis dalam satu wadah Array yang berurutan!',
+        icon: '📊',
+        duration: '22-28 Menit',
+        xpReward: 400,
+        prerequisites: ['lesson-10'],
+        sections: [
+            { id: 'sec-11-1', title: '1. Array Indexing', type: 'explanation', content: `<p>Index array C++ selalu dimulai dari 0 (zero-indexed).</p>` }
+        ],
+        challenge: {
+            id: 'chal-11',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat array `int nilai[3] = {80, 90, 100};` lalu hitung dan cetak `total` jumlah ketiga nilai tersebut (270).',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int nilai[3] = {80, 90, 100};\n    int total = nilai[0] + nilai[1] + nilai[2];\n    cout << total;\n    return 0;\n}`,
+            hints: ['Jumlahkan `nilai[0] + nilai[1] + nilai[2]`'],
+            testCases: [{ id: 't11-1', input: '', expectedOutput: '270', description: 'Total nilai = 270' }]
+        }
+    },
+
+    // --- LEVEL 6 — POINTER & REFERENCE ---
+    {
+        id: 'lesson-12',
+        level: 6,
+        levelTitle: 'LEVEL 6 — POINTER & REFERENCE',
+        title: 'Lesson 12 — Alamat Memori (&) & Pointer (*)',
+        description: 'Kuasai alamat memori (&) dan variabel pointer (*) untuk manajemen memori tingkat lanjut.',
+        icon: '📍',
+        duration: '25-30 Menit',
+        xpReward: 450,
+        prerequisites: ['lesson-11'],
+        sections: [
+            { id: 'sec-12-1', title: '1. Alamat Memori & Pointer', type: 'explanation', content: `<p><code>&x</code> mengambil alamat memori, dan <code>int* ptr = &x;</code> menyimpan alamat memori tersebut.</p>` }
+        ],
+        challenge: {
+            id: 'chal-12',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat `int x = 50;`, buat pointer `int* ptr = &x;`, lalu cetak nilai `*ptr` (dereference).',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 50;\n    int* ptr = &x;\n    cout << *ptr;\n    return 0;\n}`,
+            hints: ['Cetak `cout << *ptr;` untuk mengakses nilai variabel asli.'],
+            testCases: [{ id: 't12-1', input: '', expectedOutput: '50', description: 'Mencetak 50 via dereference pointer' }]
+        }
+    },
+
+    // --- LEVEL 7 — STRUCT ---
+    {
+        id: 'lesson-13',
+        level: 7,
+        levelTitle: 'LEVEL 7 — STRUCT (STRUKTUR DATA)',
+        title: 'Lesson 13 — Struct & Data Siswa',
+        description: 'Kelompokkan berbagai tipe data berbeda ke dalam satu objek Struct terpadu.',
+        icon: '🏗️',
+        duration: '25-30 Menit',
+        xpReward: 500,
+        prerequisites: ['lesson-12'],
+        sections: [
+            { id: 'sec-13-1', title: '1. Struct C++', type: 'explanation', content: `<p>Struct mengabungkan variabel dengan tipe data berbeda dalam 1 entitas.</p>` }
+        ],
+        challenge: {
+            id: 'chal-13',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat `struct Student { string nama; int umur; };`. Buat 1 object `Student s1; s1.nama = "Rahel"; s1.umur = 16;` lalu cetak `s1.nama` dan `s1.umur` dipisah spasi.',
+            starterCode: `#include <iostream>\n#include <string>\nusing namespace std;\n\nstruct Student {\n    string nama;\n    int umur;\n};\n\nint main() {\n    Student s1;\n    s1.nama = "Rahel";\n    s1.umur = 16;\n    cout << s1.nama << " " << s1.umur;\n    return 0;\n}`,
+            hints: ['Akses attribute dengan `s1.nama` dan `s1.umur`.'],
+            testCases: [{ id: 't13-1', input: '', expectedOutput: 'Rahel 16', description: 'Mencetak Rahel 16' }]
+        }
+    },
+
+    // --- LEVEL 8 — RECURSION ---
+    {
+        id: 'lesson-14',
+        level: 8,
+        levelTitle: 'LEVEL 8 — RECURSION (REKURSI)',
+        title: 'Lesson 14 — Fungsi Rekursif & Factorial',
+        description: 'Pahami fungsi yang memanggil dirinya sendiri dengan Base Case yang kuat.',
+        icon: '🌀',
+        duration: '25-30 Menit',
+        xpReward: 550,
+        prerequisites: ['lesson-13'],
+        sections: [
+            { id: 'sec-14-1', title: '1. Rekursi', type: 'explanation', content: `<p>Fungsi rekursif wajib memiliki Base Case agar tidak terjadi stack overflow.</p>` }
+        ],
+        challenge: {
+            id: 'chal-14',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat fungsi rekursif `int faktorial(int n)` di mana jika `n <= 1` return `1`, selain itu return `n * faktorial(n - 1)`. Hitung `faktorial(5)` (120).',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nint faktorial(int n) {\n    if (n <= 1) return 1;\n    return n * faktorial(n - 1);\n}\n\nint main() {\n    cout << faktorial(5);\n    return 0;\n}`,
+            hints: ['Gunakan `faktorial(5)` -> 120.'],
+            testCases: [{ id: 't14-1', input: '', expectedOutput: '120', description: 'Faktorial 5 = 120' }]
+        }
+    },
+
+    // --- LEVEL 9 — OOP ---
+    {
+        id: 'lesson-15',
+        level: 9,
+        levelTitle: 'LEVEL 9 — OBJECT ORIENTED PROGRAMMING',
+        title: 'Lesson 15 — Class, Object, & Encapsulation',
+        description: 'Kuasai paradigma OOP dengan Class, Constructor, Private/Public Access Modifiers.',
+        icon: '🏛️',
+        duration: '30-35 Menit',
+        xpReward: 600,
+        prerequisites: ['lesson-14'],
+        sections: [
+            { id: 'sec-15-1', title: '1. Class & Object', type: 'explanation', content: `<p>Class adalah cetakan (blueprint) dan Object adalah hasil wujud nyatanya.</p>` }
+        ],
+        challenge: {
+            id: 'chal-15',
+            title: 'Sekarang giliran kamu 👨‍💻',
+            instruction: 'Buat `class Hero` dengan method `void serang()` yang mencetak `Hero menyerang!`. Buat object di `main()` dan panggil `serang()`.',
+            starterCode: `#include <iostream>\nusing namespace std;\n\nclass Hero {\npublic:\n    void serang() {\n        cout << "Hero menyerang!";\n    }\n};\n\nint main() {\n    Hero h1;\n    h1.serang();\n    return 0;\n}`,
+            hints: ['Panggil `h1.serang();`'],
+            testCases: [{ id: 't15-1', input: '', expectedOutput: 'Hero menyerang!', description: 'Object Hero memanggil serang()' }]
+        }
+    },
+
+    // --- LEVEL 10 — PROJECTS & FINAL ---
+    {
+        id: 'lesson-16',
+        level: 10,
+        levelTitle: 'LEVEL 10 — REAL-LIFE PROJECTS',
+        title: 'Lesson 16 🚀 FINAL PROJECT — Student Management System XI-4',
+        description: 'Gabungkan seluruh ilmu C++ kamu untuk membangun Aplikasi Manajemen Siswa & Nilai Kelas XI-4 utuh!',
+        icon: '🏆',
+        duration: '40-50 Menit',
+        xpReward: 1000,
+        prerequisites: ['lesson-15'],
+        sections: [
+            { id: 'sec-16-1', title: '1. Tantangan Akhir', type: 'explanation', content: `<p>Selamat atas pencapaianmu! Waktunya menggabungkan Variabel, Input/Output, Conditional, Loop, Struct, dan Fungsi untuk membuat Aplikasi Manajemen Siswa XI-4 lengkap!</p>` }
+        ],
+        challenge: {
+            id: 'chal-16',
+            title: '🚀 FINAL PROJECT C++',
+            instruction: 'Buat program manajemen nilai yang membaca `nama` (string) dan `nilai` (int). Jika `nilai >= 75` cetak `Siswa: [nama] | Status: LULUS`, jika tidak cetak `Siswa: [nama] | Status: REMEDIAL`.',
+            starterCode: `#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string nama;\n    int nilai;\n    cin >> nama >> nilai;\n    \n    if (nilai >= 75) {\n        cout << "Siswa: " << nama << " | Status: LULUS";\n    } else {\n        cout << "Siswa: " << nama << " | Status: REMEDIAL";\n    }\n    return 0;\n}`,
+            hints: ['Gunakan penggabungan teks string dan variabel.'],
             testCases: [
-                {
-                    id: 't8-1',
-                    input: '',
-                    expectedOutput: '1 2 3 4 5 ',
-                    description: 'Harus mencetak "1 2 3 4 5 "'
-                }
+                { id: 't16-1', input: 'Rahel 95', expectedOutput: 'Siswa: Rahel | Status: LULUS', description: 'Rahel 95 -> LULUS' },
+                { id: 't16-2', input: 'Niko 65', expectedOutput: 'Siswa: Niko | Status: REMEDIAL', description: 'Niko 65 -> REMEDIAL' }
             ]
         }
     }

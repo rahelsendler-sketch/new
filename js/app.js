@@ -82,12 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 routeToView('lesson', lessonId);
             });
         } else if (viewName === 'practice') {
-            if (pageTitle) pageTitle.textContent = 'Coding Playground';
-            if (pageSubtitle) pageSubtitle.textContent = 'Tulis, uji, dan jalankan kode C++ bebas di browser kamu.';
+            if (pageTitle) pageTitle.textContent = 'Coding Challenge & Playground';
+            if (pageSubtitle) pageSubtitle.textContent = 'Tulis, uji, dan selesaikan tantangan koding C++ interaktif.';
 
-            viewContainer.innerHTML = `<div id="playground-slot" style="height:100%;"></div>`;
-            const slot = document.getElementById('playground-slot');
-            window.editorView.mount(slot, null);
+            challengeView.render(viewContainer, (lessonId) => {
+                routeToView('lesson', lessonId);
+            });
         } else if (viewName === 'tutor') {
             if (pageTitle) pageTitle.textContent = '🤖 Personal C++ AI Tutor';
             if (pageSubtitle) pageSubtitle.textContent = 'Tanyakan konsep C++, minta saran debugging, atau penjelasan matematika.';

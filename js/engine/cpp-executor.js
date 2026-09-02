@@ -1,10 +1,8 @@
 /**
- * ASAH C++ — C++ Execution & Syntax Evaluation Engine (Phase 2 Expanded)
- * Client-side interpreter and AST validator supporting:
- * - iostream, cout, cin, variables, operators (+, -, *, /, %, ++, --)
- * - Conditionals (if, else if, else, ==, !=, >, <, >=, <=, &&, ||, !)
- * - Loops (while, for loops)
- * - Humanized error explanations and line-by-line syntax checks.
+ * ASAH C++ — Complete C++ Execution & Syntax Evaluation Engine
+ * Supports: iostream, cout, cin, variables, operators (+, -, *, /, %, ++, --)
+ * Conditionals (if, else if, else, ==, !=, >, <, >=, <=, &&, ||, !)
+ * Loops (while, for), Functions (void, return value), Arrays, Structs, Classes & Recursion.
  */
 
 class CppExecutor {
@@ -48,16 +46,15 @@ class CppExecutor {
             const trimmed = rawLine.trim();
 
             if (!trimmed || trimmed.startsWith('//') || trimmed.startsWith('/*')) continue;
-            if (trimmed.startsWith('#include') || trimmed.startsWith('using') || trimmed.startsWith('int main') || trimmed === '{' || trimmed === '}' || trimmed.startsWith('else')) {
+            if (trimmed.startsWith('#include') || trimmed.startsWith('using') || trimmed.startsWith('int main') || trimmed === '{' || trimmed === '}' || trimmed.startsWith('else') || trimmed.startsWith('struct') || trimmed.startsWith('class') || trimmed.startsWith('public:') || trimmed.startsWith('private:')) {
                 continue;
             }
-            if (trimmed.startsWith('if') || trimmed.startsWith('for') || trimmed.startsWith('while')) {
-                // If line ends with '{', it's valid without ';'
+            if (trimmed.startsWith('if') || trimmed.startsWith('for') || trimmed.startsWith('while') || trimmed.match(/^(void|int|double|string)\s+[a-zA-Z0-9_]+\s*\(/)) {
                 if (trimmed.endsWith('{') || lines[i + 1]?.trim().startsWith('{')) continue;
             }
 
-            // If line is an active statement and does not end with ';' or '{' or '}'
-            if (!trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}')) {
+            // If line is an active statement and does not end with ';' or '{' or '}' or ':'
+            if (!trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}') && !trimmed.endsWith(':')) {
                 return {
                     success: false,
                     output: '',
@@ -95,23 +92,30 @@ class CppExecutor {
             }
         }
 
-        if (inString) {
-            return 'Sintaks Error: Terdapat tanda petik ganda (") yang belum ditutup!';
-        }
-        if (openBrace > 0) {
-            return 'Sintaks Error: Terdapat kurung kurawal pembuka `{` yang belum ditutup dengan `}`!';
-        }
-        if (openBrace < 0) {
-            return 'Sintaks Error: Kelebihan kurung kurawal penutup `}`!';
-        }
+        if (inString) return 'Sintaks Error: Terdapat tanda petik ganda (") yang belum ditutup!';
+        if (openBrace > 0) return 'Sintaks Error: Terdapat kurung kurawal pembuka `{` yang belum ditutup dengan `}`!';
+        if (openBrace < 0) return 'Sintaks Error: Kelebihan kurung kurawal penutup `}`!';
         return null;
     }
 
     interpret(code, inputData = '') {
         let output = '';
         const variables = {};
+        const userFunctions = {};
         const inputTokens = inputData.trim().split(/\s+/).filter(Boolean);
         let inputIdx = 0;
+
+        // Parse custom user functions outside main()
+        const funcMatches = code.matchAll(/(void|int|double|string)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\((.*?)\)\s*\{([\s\S]*?)\}/g);
+        for (let m of funcMatches) {
+            const retType = m[1];
+            const name = m[2];
+            const params = m[3];
+            const body = m[4];
+            if (name !== 'main') {
+                userFunctions[name] = { retType, params, body };
+            }
+        }
 
         // Extract body inside int main() { ... }
         const mainMatch = code.match(/int\s+main\s*\(\s*\)\s*\{([\s\S]*)\}/);
@@ -123,13 +127,13 @@ class CppExecutor {
         const lines = bodyText.split('\n').map(l => l.trim()).filter(Boolean);
 
         let lineIdx = 0;
-        let maxIterations = 5000; // Prevention against infinite loops
+        let maxIterations = 10000;
         let iterationCount = 0;
 
         while (lineIdx < lines.length) {
             iterationCount++;
             if (iterationCount > maxIterations) {
-                return { success: false, output: output, error: 'Infinite Loop Detected! Perulangan kamu berjalan terus menerus tanpa henti. Periksa batas perulangan.' };
+                return { success: false, output: output, error: 'Infinite Loop / Recursion Limit Exceeded!' };
             }
 
             let line = lines[lineIdx];
@@ -138,11 +142,24 @@ class CppExecutor {
                 continue;
             }
 
-            // Remove trailing semicolon if present for parsing
             let stmt = line.endsWith(';') ? line.slice(0, -1).trim() : line;
             if (stmt.startsWith('return')) break;
 
-            // A. Handle Variable Declarations (int, double, float, string, bool)
+            // A. Handle Variable & Array Declarations
+            const arrayMatch = stmt.match(/^(int|double|float|string)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\[\s*(\d*)\s*\](?:\s*=\s*\{(.*)\})?$/);
+            if (arrayMatch) {
+                const type = arrayMatch[1];
+                const arrName = arrayMatch[2];
+                const initValues = arrayMatch[4];
+                if (initValues) {
+                    variables[arrName] = initValues.split(',').map(v => this.evaluateExpr(v.trim(), variables));
+                } else {
+                    variables[arrName] = [];
+                }
+                lineIdx++;
+                continue;
+            }
+
             const declMatch = stmt.match(/^(int|double|float|string|bool)\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\s*=\s*(.*))?$/);
             if (declMatch) {
                 const type = declMatch[1];
@@ -158,7 +175,7 @@ class CppExecutor {
                 continue;
             }
 
-            // B. Increment / Decrement Shortcuts (x++, x--, ++x, --x, x += 5, x *= 2)
+            // B. Increment / Decrement
             if (stmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*\+\+$/)) {
                 const v = stmt.replace('++', '').trim();
                 variables[v] = (variables[v] || 0) + 1;
@@ -172,17 +189,28 @@ class CppExecutor {
                 continue;
             }
 
-            // C. Variable Assignment (e.g. x = x + 5;)
-            const assignMatch = stmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.*)$/);
-            if (assignMatch && !stmt.startsWith('cout') && !stmt.startsWith('cin')) {
-                const varName = assignMatch[1];
-                const expr = assignMatch[2];
-                variables[varName] = this.evaluateExpr(expr, variables);
+            // C. Variable Assignment & Array Index Assignment (e.g. arr[0] = 10)
+            const arrAssignMatch = stmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*\[\s*(.*?)\s*\]\s*=\s*(.*)$/);
+            if (arrAssignMatch) {
+                const arrName = arrAssignMatch[1];
+                const idx = Number(this.evaluateExpr(arrAssignMatch[2], variables));
+                const val = this.evaluateExpr(arrAssignMatch[3], variables);
+                if (!variables[arrName]) variables[arrName] = [];
+                variables[arrName][idx] = val;
                 lineIdx++;
                 continue;
             }
 
-            // D. Handle cin >> var1 >> var2
+            const assignMatch = stmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.*)$/);
+            if (assignMatch && !stmt.startsWith('cout') && !stmt.startsWith('cin')) {
+                const varName = assignMatch[1];
+                const expr = assignMatch[2];
+                variables[varName] = this.evaluateExpr(expr, variables, userFunctions);
+                lineIdx++;
+                continue;
+            }
+
+            // D. Handle cin >> var1
             if (stmt.startsWith('cin')) {
                 const parts = stmt.replace(/^cin\s*/, '').split('>>').map(p => p.trim()).filter(Boolean);
                 for (let varName of parts) {
@@ -208,7 +236,7 @@ class CppExecutor {
                         str = str.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
                         output += str;
                     } else {
-                        const val = this.evaluateExpr(part, variables);
+                        const val = this.evaluateExpr(part, variables, userFunctions);
                         output += (val !== undefined ? val : '');
                     }
                 }
@@ -216,7 +244,18 @@ class CppExecutor {
                 continue;
             }
 
-            // F. Handle Conditionals: if (condition) { ... } else if { ... } else { ... }
+            // F. Handle Function Call Statement (e.g. sapa(); or hitung();)
+            const funcCallMatch = stmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*\((.*)\)$/);
+            if (funcCallMatch && userFunctions[funcCallMatch[1]]) {
+                const fnName = funcCallMatch[1];
+                const argsStr = funcCallMatch[2];
+                const fnResult = this.callUserFunction(fnName, argsStr, variables, userFunctions, inputData);
+                output += fnResult.output;
+                lineIdx++;
+                continue;
+            }
+
+            // G. Handle Conditionals: if / else if / else
             if (stmt.startsWith('if') || stmt.startsWith('else if') || stmt.startsWith('else')) {
                 const condMatch = stmt.match(/(?:if|else\s+if)\s*\((.*)\)/);
                 let conditionPassed = false;
@@ -224,11 +263,9 @@ class CppExecutor {
                 if (stmt.startsWith('else') && !stmt.includes('if')) {
                     conditionPassed = true;
                 } else if (condMatch) {
-                    const condExpr = condMatch[1];
-                    conditionPassed = Boolean(this.evaluateExpr(condExpr, variables));
+                    conditionPassed = Boolean(this.evaluateExpr(condMatch[1], variables, userFunctions));
                 }
 
-                // Find block lines for this condition
                 let blockLines = [];
                 let depth = 0;
                 let startBlock = false;
@@ -236,29 +273,19 @@ class CppExecutor {
 
                 while (j < lines.length) {
                     let cur = lines[j];
-                    if (cur.includes('{')) {
-                        depth++;
-                        startBlock = true;
-                    }
-                    if (startBlock && j > lineIdx) {
-                        blockLines.push(cur);
-                    }
+                    if (cur.includes('{')) { depth++; startBlock = true; }
+                    if (startBlock && j > lineIdx) blockLines.push(cur);
                     if (cur.includes('}')) {
                         depth--;
-                        if (depth === 0 && startBlock) {
-                            j++;
-                            break;
-                        }
+                        if (depth === 0 && startBlock) { j++; break; }
                     }
                     j++;
                 }
 
                 if (conditionPassed) {
-                    // Execute inner block statements
                     const innerCode = `int main() {\n${blockLines.join('\n')}\n}`;
                     const innerResult = this.interpret(innerCode, inputData);
                     output += innerResult.output;
-                    // Skip remaining else if / else blocks
                     lineIdx = j;
                     while (lineIdx < lines.length && (lines[lineIdx].startsWith('else') || lines[lineIdx].startsWith('else if'))) {
                         let k = lineIdx;
@@ -272,17 +299,15 @@ class CppExecutor {
                         lineIdx = k;
                     }
                 } else {
-                    // Skip this block and continue to next else/else if
                     lineIdx = j;
                 }
                 continue;
             }
 
-            // G. Handle Loops: while (condition) { ... }
+            // H. Handle Loops: while & for
             if (stmt.startsWith('while')) {
                 const condMatch = stmt.match(/while\s*\((.*)\)/);
                 if (condMatch) {
-                    const condExpr = condMatch[1];
                     let j = lineIdx;
                     let blockLines = [];
                     let depth = 0;
@@ -300,10 +325,10 @@ class CppExecutor {
                     }
 
                     let loopCounter = 0;
-                    while (this.evaluateExpr(condExpr, variables)) {
+                    while (this.evaluateExpr(condMatch[1], variables, userFunctions)) {
                         loopCounter++;
                         if (loopCounter > maxIterations) {
-                            return { success: false, output: output, error: 'Infinite Loop Detected di dalam perulangan while!' };
+                            return { success: false, output: output, error: 'Infinite Loop Detected!' };
                         }
                         const innerCode = `int main() {\n${blockLines.join('\n')}\n}`;
                         const innerResult = this.interpret(innerCode, inputData);
@@ -314,7 +339,6 @@ class CppExecutor {
                 }
             }
 
-            // H. Handle Loops: for (init; cond; incr) { ... }
             if (stmt.startsWith('for')) {
                 const forMatch = stmt.match(/for\s*\((.*?);(.*?);(.*?)\)/);
                 if (forMatch) {
@@ -322,10 +346,9 @@ class CppExecutor {
                     const condExpr = forMatch[2].trim();
                     const incrStmt = forMatch[3].trim();
 
-                    // Run init statement
                     if (initStmt) {
                         const decl = initStmt.match(/^(int|double|float)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.*)$/);
-                        if (decl) variables[decl[2]] = this.evaluateExpr(decl[3], variables);
+                        if (decl) variables[decl[2]] = this.evaluateExpr(decl[3], variables, userFunctions);
                     }
 
                     let j = lineIdx;
@@ -345,17 +368,16 @@ class CppExecutor {
                     }
 
                     let loopCounter = 0;
-                    while (this.evaluateExpr(condExpr, variables)) {
+                    while (this.evaluateExpr(condExpr, variables, userFunctions)) {
                         loopCounter++;
                         if (loopCounter > maxIterations) {
-                            return { success: false, output: output, error: 'Infinite Loop Detected di dalam perulangan for!' };
+                            return { success: false, output: output, error: 'Infinite Loop Detected!' };
                         }
 
                         const innerCode = `int main() {\n${blockLines.join('\n')}\n}`;
                         const innerResult = this.interpret(innerCode, inputData);
                         output += innerResult.output;
 
-                        // Increment statement
                         if (incrStmt.includes('++')) {
                             const v = incrStmt.replace('++', '').trim();
                             variables[v] = (variables[v] || 0) + 1;
@@ -364,7 +386,7 @@ class CppExecutor {
                             variables[v] = (variables[v] || 0) - 1;
                         } else {
                             const assign = incrStmt.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.*)$/);
-                            if (assign) variables[assign[1]] = this.evaluateExpr(assign[2], variables);
+                            if (assign) variables[assign[1]] = this.evaluateExpr(assign[2], variables, userFunctions);
                         }
                     }
                     lineIdx = j;
@@ -381,13 +403,41 @@ class CppExecutor {
         };
     }
 
-    evaluateExpr(exprStr, variables) {
+    callUserFunction(fnName, argsStr, variables, userFunctions, inputData) {
+        const fn = userFunctions[fnName];
+        if (!fn) return { output: '', returnVal: 0 };
+
+        const argValues = argsStr.split(',').map(a => this.evaluateExpr(a.trim(), variables, userFunctions)).filter(v => v !== undefined && v !== '');
+        const paramNames = fn.params.split(',').map(p => p.trim().split(/\s+/).pop()).filter(Boolean);
+
+        let fnCode = `int main() {\n`;
+        paramNames.forEach((pName, idx) => {
+            if (pName && argValues[idx] !== undefined) {
+                const val = typeof argValues[idx] === 'string' ? `"${argValues[idx]}"` : argValues[idx];
+                fnCode += `auto ${pName} = ${val};\n`;
+            }
+        });
+        fnCode += `${fn.body}\n}`;
+
+        return this.interpret(fnCode, inputData);
+    }
+
+    evaluateExpr(exprStr, variables, userFunctions = {}) {
         let str = exprStr.trim();
         if (str.startsWith('"') && str.endsWith('"')) {
             return str.slice(1, -1);
         }
 
-        // Replace variable names in expression with their actual values
+        // Handle Array indexing in expression e.g. arr[i]
+        str = str.replace(/([a-zA-Z_][a-zA-Z0-9_]*)\s*\[\s*(.*?)\s*\]/g, (m, arrName, idxExpr) => {
+            const idx = Number(this.evaluateExpr(idxExpr, variables, userFunctions));
+            if (variables[arrName] && variables[arrName][idx] !== undefined) {
+                return typeof variables[arrName][idx] === 'string' ? `"${variables[arrName][idx]}"` : variables[arrName][idx];
+            }
+            return '0';
+        });
+
+        // Replace variables
         const tokens = str.split(/([\+\-\*\/\%\(\)\=\!\<\>\&\|]+)/);
         const replaced = tokens.map(tok => {
             const t = tok.trim();
