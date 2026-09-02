@@ -303,74 +303,94 @@ function renderChickenSVG(config = {}) {
 
     switch (cut.shape) {
         case 'drumstick':
+            // Paha Bawah: Iconic bulbous drumstick meat with distinct dual bone knobs at bottom
             bodyShapeMarkup = `
                 <g class="chicken-bone">
-                    <path d="M35,95 L24,115 C19,118 14,112 17,107 C13,103 19,95 25,98 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" stroke-linejoin="round"/>
-                    <ellipse cx="20" cy="115" rx="5" ry="5" fill="#e2e8f0"/>
-                    <ellipse cx="24" cy="108" rx="4" ry="4" fill="#f8fafc"/>
+                    <path d="M42,92 L22,112 C16,118 10,110 14,104 C8,98 16,90 22,94 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5" stroke-linejoin="round"/>
+                    <circle cx="16" cy="112" r="5" fill="#e2e8f0"/>
+                    <circle cx="24" cy="116" r="4.5" fill="#f8fafc"/>
+                    <rect x="22" y="94" width="22" height="14" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" transform="rotate(-38 33 101)"/>
                 </g>
                 <g class="chicken-meat">
-                    <path d="M35,95 C20,80 20,40 45,25 C65,12 100,20 105,45 C112,70 95,95 70,100 C55,102 45,100 35,95 Z" 
-                          fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3" stroke-linejoin="round"/>
-                    <path d="M42,35 Q52,28 62,32 Q77,25 92,35" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M36,60 Q46,55 59,60 Q73,50 96,58" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M46,82 Q61,78 76,85" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
-                    <ellipse cx="62" cy="35" rx="18" ry="8" fill="${h}" opacity="0.4" transform="rotate(-15 62 35)"/>
-                    <circle cx="85" cy="40" r="2.5" fill="${c}"/>
-                    <circle cx="45" cy="70" r="2.2" fill="${c}"/>
-                    <circle cx="80" cy="75" r="3" fill="${c}"/>
-                    <circle cx="65" cy="90" r="2" fill="${c}"/>
+                    <!-- Distinct teardrop drumstick meat shape -->
+                    <path d="M38,94 C18,78 14,38 42,18 C64,4 106,12 112,42 C118,72 96,96 70,102 C52,104 42,98 38,94 Z" 
+                          fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3.5" stroke-linejoin="round"/>
+                    <!-- Crispy skin ridges and golden crunches -->
+                    <path d="M40,32 Q54,22 68,28 Q84,20 100,32" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+                    <path d="M32,58 Q48,50 64,56 Q80,44 104,54" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+                    <path d="M42,82 Q60,74 80,82" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+                    <!-- Golden Highlights -->
+                    <ellipse cx="64" cy="28" rx="20" ry="7" fill="${h}" opacity="0.5" transform="rotate(-12 64 28)"/>
+                    <circle cx="92" cy="38" r="3" fill="${c}"/>
+                    <circle cx="42" cy="72" r="2.8" fill="${c}"/>
+                    <circle cx="84" cy="78" r="3.2" fill="${c}"/>
+                    <circle cx="68" cy="94" r="2.5" fill="${c}"/>
                 </g>
             `;
             break;
 
         case 'thigh':
+            // Paha Atas: Flat-ish quadrilateral meaty piece with visible bone joint edge
             bodyShapeMarkup = `
                 <g class="chicken-meat">
-                    <path d="M25,50 C20,25 50,15 75,18 C105,20 115,45 110,75 C105,105 75,112 45,105 C25,100 18,75 25,50 Z" 
+                    <path d="M22,46 C16,22 48,12 78,14 C110,16 120,42 114,78 C108,108 78,116 44,108 C20,102 14,76 22,46 Z" 
                           fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3.5" stroke-linejoin="round"/>
-                    <path d="M35,38 Q55,30 85,35 Q100,45 102,60" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
-                    <path d="M30,68 Q60,60 95,70" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M40,88 Q65,82 85,90" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
-                    <ellipse cx="65" cy="32" rx="24" ry="10" fill="${h}" opacity="0.45"/>
-                    <circle cx="35" cy="50" r="3" fill="${c}"/>
-                    <circle cx="95" cy="48" r="3" fill="${c}"/>
-                    <circle cx="55" cy="95" r="2.5" fill="${c}"/>
+                    <!-- Inner thigh bone notch indicator -->
+                    <path d="M26,92 C20,86 24,78 30,82 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.8"/>
+                    <!-- Crispy skin ripples -->
+                    <path d="M32,32 Q58,22 90,28 Q106,40 108,58" fill="none" stroke="${c}" stroke-width="3.8" stroke-linecap="round" opacity="0.75"/>
+                    <path d="M28,64 Q60,54 100,66" fill="none" stroke="${c}" stroke-width="3.2" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M38,88 Q66,80 90,90" fill="none" stroke="${c}" stroke-width="2.8" stroke-linecap="round" opacity="0.6"/>
+                    <ellipse cx="68" cy="26" rx="26" ry="9" fill="${h}" opacity="0.5"/>
+                    <circle cx="32" cy="46" r="3" fill="${c}"/>
+                    <circle cx="98" cy="44" r="3.2" fill="${c}"/>
+                    <circle cx="58" cy="98" r="2.8" fill="${c}"/>
                 </g>
             `;
             break;
 
         case 'wing':
+            // Sayap (Crispy Wing): Distinct 2-joint V-wing shape with wingette & drumette bone tips
             bodyShapeMarkup = `
                 <g class="chicken-bone">
-                    <ellipse cx="22" cy="75" rx="5" ry="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
-                    <ellipse cx="108" cy="78" rx="5" ry="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                    <!-- Wingtip bones -->
+                    <path d="M12,48 L22,34 L28,42 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M110,48 L100,34 L94,42 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
                 </g>
                 <g class="chicken-meat">
-                    <path d="M22,70 C15,45 35,25 60,25 C85,25 115,40 108,70 C100,95 85,105 62,100 C38,105 25,95 22,70 Z" 
+                    <!-- Angular V-Wing Shape -->
+                    <path d="M16,52 Q12,32 35,26 Q60,20 64,42 Q68,20 93,26 Q116,32 112,52 C106,78 88,106 64,106 C40,106 22,78 16,52 Z" 
                           fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3.5" stroke-linejoin="round"/>
-                    <path d="M30,55 Q50,42 62,55 Q75,42 98,55" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M38,78 Q62,70 88,78" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-                    <ellipse cx="62" cy="35" rx="18" ry="7" fill="${h}" opacity="0.5"/>
-                    <circle cx="35" cy="40" r="2.5" fill="${c}"/>
-                    <circle cx="90" cy="40" r="2.5" fill="${c}"/>
-                    <circle cx="62" cy="85" r="3" fill="${c}"/>
+                    <!-- Wing joint cleft line -->
+                    <path d="M64,42 L64,100" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="4 3" opacity="0.6"/>
+                    <!-- Wing crispy fold lines -->
+                    <path d="M26,44 Q44,32 58,46" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M102,44 Q84,32 70,46" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M32,74 Q64,62 96,74" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+                    <ellipse cx="42" cy="32" rx="14" ry="6" fill="${h}" opacity="0.5" transform="rotate(-15 42 32)"/>
+                    <ellipse cx="86" cy="32" rx="14" ry="6" fill="${h}" opacity="0.5" transform="rotate(15 86 32)"/>
+                    <circle cx="28" cy="58" r="2.8" fill="${c}"/>
+                    <circle cx="100" cy="58" r="2.8" fill="${c}"/>
+                    <circle cx="64" cy="88" r="3.2" fill="${c}"/>
                 </g>
             `;
             break;
 
         case 'breast':
+            // Dada Ayam (Keel Breast): Triangular heart-shaped large breast meat with center keel bone line
             bodyShapeMarkup = `
                 <g class="chicken-meat">
-                    <path d="M60,18 C85,18 115,35 112,75 C108,105 85,115 60,118 C35,115 12,105 8,75 C5,35 35,18 60,18 Z" 
-                          fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3.5" stroke-linejoin="round"/>
-                    <path d="M25,48 Q60,35 95,48" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M25,75 Q60,65 95,75" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-                    <path d="M38,98 Q60,90 82,98" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
-                    <ellipse cx="60" cy="30" rx="26" ry="9" fill="${h}" opacity="0.45"/>
-                    <circle cx="30" cy="60" r="3" fill="${c}"/>
-                    <circle cx="90" cy="60" r="3" fill="${c}"/>
-                    <circle cx="60" cy="82" r="3" fill="${c}"/>
+                    <path d="M64,14 C94,14 122,34 116,78 C110,110 86,120 64,122 C42,120 18,110 12,78 C6,34 34,14 64,14 Z" 
+                          fill="url(#grad_crispy_${cutId})" stroke="${c}" stroke-width="3.8" stroke-linejoin="round"/>
+                    <!-- Keel bone center ridge line -->
+                    <path d="M64,20 L64,116" stroke="${c}" stroke-width="3.5" opacity="0.5" stroke-dasharray="6 4"/>
+                    <path d="M22,46 Q64,30 106,46" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M22,76 Q64,62 106,76" fill="none" stroke="${c}" stroke-width="3.2" stroke-linecap="round" opacity="0.7"/>
+                    <path d="M34,100 Q64,90 94,100" fill="none" stroke="${c}" stroke-width="2.8" stroke-linecap="round" opacity="0.6"/>
+                    <ellipse cx="64" cy="26" rx="28" ry="9" fill="${h}" opacity="0.5"/>
+                    <circle cx="28" cy="62" r="3.2" fill="${c}"/>
+                    <circle cx="100" cy="62" r="3.2" fill="${c}"/>
+                    <circle cx="64" cy="88" r="3.5" fill="${c}"/>
                 </g>
             `;
             break;
@@ -765,68 +785,79 @@ const DESK_SPECIFIC_PHRASES = {
         "Palala, Stecu, mau contek rumus gerak parabola gak? 📐✨",
         "Ayam krispi gue jangan dicolong ya Stecu! 🍗😤",
         "Bagi kentang goreng satu stik dong Palala! 🍟🤤",
-        "Woy Nesi, ayo kejar-kejaran sebelum Miss Eva masuk! 🏃‍♂️💨"
+        "Woy Nesi, habis pulang sekolah mabar Roblox yuk! 🎮✨",
+        "Minta rengginang dong dari kaleng Khong Guan Meja 1! 🍘😋"
     ],
     desk_2: [
         "Gio, Monang, kejar gue sini kalau berani ambil kentang gue! 🍟🏃‍♂️",
         "Woy Panpan jangan lari nabrak meja guru! 🏃‍♂️💨",
         "Saus keju di kentang ini lumer banget parah! 🧀🤤",
-        "Monang, liat catatan fisika bab GLBB lu dong! 📓"
+        "Siapa yang bawa rengginang renyah ke kelas?! Bagi dong Panpan! 🍘✨",
+        "Gas mabar Roblox Tower of Hell nanti sore jam 4! 🎮🏃‍♂️"
     ],
     desk_3: [
         "Kaisar, Jeris, bagi contekan rumus nomor 3 dong! 📓👀",
         "Percikan saos sambal di paha ayam gue pedas abis! 🌶️🥵",
         "Sttt jangan ribut, nanti Miss Eva noleh ke Meja 3! 🤫",
-        "Kejar gue kalau berani, Jeris! 🏃‍♂️🍗"
+        "Kaisar, ntar malem mabar ML / Roblox gas gak? 🎮⚡",
+        "Nih rengginang gurih kriuk buat amunisi ngerjain fisika! 🍘📚"
     ],
     desk_4: [
         "Marmar, Piman, penggaris gue jangan dipinjam buat mukul meja! 📏😂",
         "Kentang krispi KFC emang juara banget di Meja 4! 🍟✨",
         "Joeng, pinjam penghapus dong, rumus gue salah hitung! 🧽",
-        "Awas tumpah saus kejunya ke buku catatan! 🧀📖"
+        "Woy Joeng, mabar Roblox Brookhaven habis piket yuk! 🎮🏠",
+        "Rengginang Meja 4 garing banget parah wkwk! 🍘✨"
     ],
     desk_5: [
         "Briant, Dominggo, minta saus BBQ nya dong! 🍖😋",
         "Paha sambal ini pedasnya nampol sampe ubun-ubun! 🌶️🥵",
         "Monana, liat jawaban fisika nomor 6 dong! 📚",
-        "Ayo lari ke meja sebelah sebelum bel bunyi! 🏃‍♂️💨"
+        "Mabar Roblox Bedwars nanti malem ramean se-XI-4 yuk! 🎮⚔️",
+        "Rengginang emang temen terbaik sambil makan ayam KFC! 🍘🍗"
     ],
     desk_6: [
         "Niko, Noah! Catatan fisika bab GLBB jangan disembunyiin! 📓👀",
         "Rahel, minta kentang gorengnya satu stik dong yang kena keju! 🍟🧀",
         "Awas Rahel, sambel gue mau kena paha ayam lu tuh wkwk! 🌶️🤣",
         "Sttt jangan ribut, Miss Eva lagi ngeliatin Meja 6! 🤫👩‍🏫",
-        "Noah, balikin buku catatan gue sekarang juga! 🏃‍♂️💨"
+        "Rahel, Niko, Noah! Habis bel langsung login mabar Roblox gas! 🎮🚀",
+        "Woy Rahel, bagi rengginang renyah di meja lu dong! 🍘😋"
     ],
     desk_7: [
         "Lepinas, Gipan, rumus gaya gesek dan percepatan apa ya? 📚",
         "Paha atas KFC lembut banget, dagingnya super juicy! 🍗😋",
         "Meloo, pinjam pensil dong, pensil gue jatuh ke kolong meja! ✏️",
-        "Ayo kejar-kejaran keliling meja 7! 🏃‍♂️🍗"
+        "Gipan, mabar Roblox Blox Fruits ntar malem bareng gue! 🎮⚔️",
+        "Siapa yang bawa rengginang toples di Meja 7 nih? 🍘🔥"
     ],
     desk_8: [
         "J.agung, liat nomor 5 dong, jawabannya apa? 📝",
         "Sayap BBQ ini kriuknya kedengeran sampe ruang guru! 🍖🤫",
         "Milo, jangan makan ayam pas guru nerangin wkwk! 🍗",
-        "Percik saus BBQ ini manis gurih mantap! 🍖✨"
+        "J.agung, ajak mabar Roblox sekelas XI-4 dong di grup! 🎮📢",
+        "Rengginang Meja 8 rasanya gurih renyah kayak ayam KFC! 🍘🍗"
     ],
     desk_9: [
         "Septian, Jejep, saos keju lumer di sayap ini enak banget! 🧀✨",
         "Jangan senggol-senggol meja woy, lagi nulis rumus fisika! 📐✏️",
         "Catty, bagi kentang goreng KFC dong! 🍟😋",
-        "Kejar gue Jejep kalau bisa ambil buku gue! 🏃‍♂️💨"
+        "Jejep, ntar malem mabar Roblox / ML ya jangan lupa! 🎮💥",
+        "Bagi rengginang dong Septian, laper nih pas jam fisika! 🍘🤤"
     ],
     desk_10: [
         "Nakula, Ben, kentang goreng KFC jangan dipalak ya! 🍟😤",
         "Pedasnya sambal korek nendang banget kayak ulangan fisika! 🌶️⚡",
         "Nia, contek rumus gerak parabola dong! 📐",
-        "Sttt jangan ribut di Meja 10, Miss Eva lagi liat! 🤫"
+        "Ben, mabar Roblox sama anak-anak XI-4 jam 7 malam ya! 🎮✨",
+        "Nia, rengginang di laci lu masih ada gak? Bagi satu! 🍘😋"
     ],
     desk_11: [
         "Geo, Jon, habis bel kita kejar-kejaran yuk! 🏃‍♂️💨",
         "Bagi saus sambal sachet satu dong Jon! 🥫🌶️",
         "Salsa, pinjam penggaris fisika dong! 📏",
-        "Kentang krispi bertabur bumbu emang paling enak! 🍟✨"
+        "Ajak mabar Roblox se-XI-4 habis pulang sekolah yuk! 🎮🚀",
+        "Salsa, rengginang gurih Meja 11 abis dipatok wkwk! 🍘🤣"
     ]
 };
 
@@ -835,6 +866,8 @@ const GENERAL_STUDENT_PHRASES = [
     "Udah selesai ngerjain tugas fisika bab GLBB belom gengs? 📚",
     "Kriuk kulit krispi ini gurih banget, renyah abis! 🍗💥",
     "Satu kelas wangi ayam goreng sama kentang KFC! 🍟🍗✨",
+    "Siapa yang bawa rengginang renyah ke kelas?! Bagi dong se-XI-4! 🍘✨",
+    "Gengs, ntar malem mabar Roblox se-XI-4 rame-rame gas! 🎮🚀",
     "Ayo beresin kursi dulu biar kelas XI-4 rapi! 🧹🪑",
     "Jangan lupa piket kelas XI-4 hari ini ya! 🧹🪣"
 ];

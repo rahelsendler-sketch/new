@@ -215,6 +215,92 @@ class SoundEngine {
         osc.start(now);
         osc.stop(now + 0.35);
     }
+    // Upbeat Cheerful Web Audio Background Music (BGM)
+    startBGM() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        if (this.bgmPlaying) return;
+
+        this.bgmPlaying = true;
+        this.bgmStep = 0;
+
+        // Upbeat major chords & melody notes in Hz (C4 major progression: C - G - Am - F)
+        const bassLine = [261.63, 261.63, 196.00, 196.00, 220.00, 220.00, 174.61, 174.61]; // C - G - Am - F
+        const melodyLine = [
+            523.25, 659.25, 783.99, 659.25, // C E G E
+            392.00, 493.88, 587.33, 493.88, // G B D B
+            440.00, 523.25, 659.25, 523.25, // A C E C
+            349.23, 440.00, 523.25, 440.00  // F A C A
+        ];
+        const arpeggiator = [1046.50, 1318.51, 1567.98, 1318.51]; // C6 E6 G6 E6 sparkler
+
+        this.bgmInterval = setInterval(() => {
+            if (!this.bgmPlaying || !this.enabled || !this.ctx) return;
+            const now = this.ctx.currentTime;
+
+            // 1. Play Bass Synth
+            const bassFreq = bassLine[Math.floor(this.bgmStep / 2) % bassLine.length];
+            const bassOsc = this.ctx.createOscillator();
+            const bassGain = this.ctx.createGain();
+            bassOsc.type = 'triangle';
+            bassOsc.frequency.setValueAtTime(bassFreq * 0.5, now);
+            bassGain.gain.setValueAtTime(0.08, now);
+            bassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+            bassOsc.connect(bassGain);
+            bassGain.connect(this.ctx.destination);
+            bassOsc.start(now);
+            bassOsc.stop(now + 0.23);
+
+            // 2. Play Cheerful Chiptune Melody
+            const melFreq = melodyLine[this.bgmStep % melodyLine.length];
+            const melOsc = this.ctx.createOscillator();
+            const melGain = this.ctx.createGain();
+            melOsc.type = 'sine';
+            melOsc.frequency.setValueAtTime(melFreq, now);
+            melGain.gain.setValueAtTime(0.06, now);
+            melGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+            melOsc.connect(melGain);
+            melGain.connect(this.ctx.destination);
+            melOsc.start(now);
+            melOsc.stop(now + 0.19);
+
+            // 3. Upbeat Hi-Hat / Snare pop every 4 steps
+            if (this.bgmStep % 2 === 1) {
+                const hatOsc = this.ctx.createOscillator();
+                const hatGain = this.ctx.createGain();
+                hatOsc.type = 'square';
+                hatOsc.frequency.setValueAtTime(1200, now);
+                hatGain.gain.setValueAtTime(0.02, now);
+                hatGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                hatOsc.connect(hatGain);
+                hatGain.connect(this.ctx.destination);
+                hatOsc.start(now);
+                hatOsc.stop(now + 0.06);
+            }
+
+            this.bgmStep = (this.bgmStep + 1) % 16;
+        }, 220); // ~136 BPM lively upbeat pace
+    }
+
+    stopBGM() {
+        this.bgmPlaying = false;
+        if (this.bgmInterval) {
+            clearInterval(this.bgmInterval);
+            this.bgmInterval = null;
+        }
+    }
+
+    toggleBGM() {
+        if (this.bgmPlaying) {
+            this.stopBGM();
+            return false;
+        } else {
+            this.startBGM();
+            return true;
+        }
+    }
 }
 
 const soundFX = new SoundEngine();
+

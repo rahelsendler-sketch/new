@@ -320,6 +320,20 @@ class ChatEngine {
                                 `Splat! Kena paha ayam lu duluan wkwk! 🍗🌶️`
                             ];
                             reply = sauceReplies[Math.floor(Math.random() * sauceReplies.length)];
+                        } else if (lower.includes('rengginang') || lower.includes('cemilan') || lower.includes('snack')) {
+                            const snackReplies = [
+                                `Nih Rahel, rengginang renyah Khong Guan di bawah laci meja buat lu sepotong! 🍘✨`,
+                                `Rengginang emang temen mantap buat makan paha ayam KFC wkwk! 🍘🍗`,
+                                `Woy jangan makan rengginang pas Miss Eva lagi ngeliatin Meja 6! 🤫🍘`
+                            ];
+                            reply = snackReplies[Math.floor(Math.random() * snackReplies.length)];
+                        } else if (lower.includes('roblox') || lower.includes('mabar') || lower.includes('game') || lower.includes('ml')) {
+                            const gameReplies = [
+                                `Gas Rahel! Habis bel pulang mabar Roblox Tower of Hell / Brookhaven bareng! 🎮🚀`,
+                                `Ntar malem mabar Roblox & ML jam 7 ya Rahel, jangan lupa! 🎮✨`,
+                                `Woy Rahel, party Roblox se-XI-4 udah siap nih wkwk! 🎮🔥`
+                            ];
+                            reply = gameReplies[Math.floor(Math.random() * gameReplies.length)];
                         } else if (lower.includes('kejar') || lower.includes('buku') || lower.includes('balikin') || lower.includes('lari')) {
                             const chaseReplies = [
                                 `Wkwk kejar gue dulu kalau mau buku fisika lu balik! 🏃‍♂️💨`,
@@ -339,7 +353,7 @@ class ChatEngine {
                 }
             }
 
-            if (responder && reply) {
+            if (responder && responder.id !== userChicken.id && reply) {
                 const isTeacher = responder.isTeacher || responder.name.includes('Miss Eva');
                 this.sendMessage(responder.id, reply, false, isTeacher);
             }

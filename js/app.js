@@ -368,6 +368,17 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountersAndRoster();
     });
 
+    const btnBgmToggle = document.getElementById('btn-bgm-toggle');
+    const bgmLabel = document.getElementById('bgm-label');
+
+    if (btnBgmToggle) {
+        btnBgmToggle.addEventListener('click', () => {
+            const isPlaying = soundFX.toggleBGM();
+            if (bgmLabel) bgmLabel.textContent = isPlaying ? 'Lagu: ON' : 'Lagu: OFF';
+            btnBgmToggle.classList.toggle('btn-gold', isPlaying);
+        });
+    }
+
     btnSoundToggle.addEventListener('click', () => {
         const isEnabled = soundFX.toggle();
         soundIcon.textContent = isEnabled ? '🔊' : '🔇';
