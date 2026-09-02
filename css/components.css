@@ -1,0 +1,274 @@
+/* ==========================================================================
+   ASAH C++ — Components, Code Editor, Execution Console & Modals
+   ========================================================================== */
+
+/* Code Editor Window */
+.code-editor-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--code-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.editor-toolbar {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editor-title {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    color: var(--cyan-primary);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.editor-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-editor-action {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-reset-code {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+}
+
+.btn-reset-code:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+}
+
+.btn-run-code {
+    background: linear-gradient(135deg, var(--emerald-success), #059669);
+    color: #ffffff;
+    box-shadow: 0 4px 12px var(--emerald-glow);
+}
+
+.btn-run-code:hover {
+    background: linear-gradient(135deg, #34d399, var(--emerald-success));
+    transform: translateY(-1px);
+}
+
+.btn-hint-code {
+    background: linear-gradient(135deg, var(--amber-primary), #d97706);
+    color: #1e1b4b;
+    box-shadow: 0 4px 12px var(--amber-glow);
+}
+
+.btn-hint-code:hover {
+    background: linear-gradient(135deg, #fbbf24, var(--amber-primary));
+}
+
+/* Textarea & Line Numbers Editor Grid */
+.editor-body-grid {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background: #090d16;
+}
+
+.line-numbers-col {
+    width: 44px;
+    padding: 14px 0;
+    background: rgba(15, 23, 42, 0.5);
+    border-right: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-family: var(--font-code);
+    font-size: 0.86rem;
+    text-align: right;
+    padding-right: 10px;
+    user-select: none;
+    line-height: 1.6;
+}
+
+.code-textarea {
+    flex: 1;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #f1f5f9;
+    font-family: var(--font-code);
+    font-size: 0.88rem;
+    padding: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    white-space: pre;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+/* Console Output Window */
+.console-output-panel {
+    height: 160px;
+    background: rgba(11, 18, 32, 0.95);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+}
+
+.console-header-bar {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.console-status-tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.console-status-tag.success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+}
+
+.console-status-tag.error {
+    background: rgba(244, 63, 94, 0.2);
+    color: #fca5a5;
+}
+
+.console-log-body {
+    flex: 1;
+    padding: 10px 14px;
+    font-family: var(--font-code);
+    font-size: 0.84rem;
+    color: #38bdf8;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.console-log-body.has-error {
+    color: #f87171;
+}
+
+/* Input Stream Prompt Widget */
+.input-stream-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(30, 41, 59, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.input-stream-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--amber-primary);
+}
+
+.input-stream-field {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 4px 10px;
+    color: #ffffff;
+    font-family: var(--font-code);
+    font-size: 0.82rem;
+    outline: none;
+}
+
+/* Test Cases Verifier Result Card */
+.test-results-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.test-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+}
+
+.test-item-row.passed {
+    border-left: 3px solid var(--emerald-success);
+    color: #6ee7b7;
+}
+
+.test-item-row.failed {
+    border-left: 3px solid var(--rose-danger);
+    color: #fca5a5;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast-message {
+    pointer-events: auto;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--border-active);
+    backdrop-filter: blur(12px);
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast-message.success {
+    border-color: var(--emerald-success);
+}
+
+.toast-message.error {
+    border-color: var(--rose-danger);
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}

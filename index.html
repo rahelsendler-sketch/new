@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAH C++ — Personal Coding Tutor & Interaktif Platform</title>
+    <meta name="description" content="Platform belajar C++ interaktif dari dasar hingga mahir dengan personal tutor, micro-questions, coding editor, dan progress tracking real-time.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/lesson.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div id="app" class="app-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar" id="app-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">⚡</div>
+                <div class="brand-text">
+                    <span class="brand-name">ASAH <small>C++</small></span>
+                    <span class="brand-tagline">Interactive Tutor</span>
+                </div>
+            </div>
+
+            <div class="user-profile-widget">
+                <div class="user-avatar-badge">👨‍💻</div>
+                <div class="user-info">
+                    <div class="user-name" id="user-display-name">Pelajar C++</div>
+                    <div class="user-level" id="user-level-badge">Level 1 • Novice</div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </button>
+                <button class="nav-item" data-view="roadmap" id="nav-roadmap">
+                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-label">Roadmap Belajar</span>
+                </button>
+                <button class="nav-item" data-view="practice" id="nav-practice">
+                    <span class="nav-icon">💻</span>
+                    <span class="nav-label">Coding Playground</span>
+                </button>
+                <button class="nav-item" data-view="tutor" id="nav-tutor">
+                    <span class="nav-icon">🤖</span>
+                    <span class="nav-label">Personal AI Tutor</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-stats-card">
+                <div class="stat-row">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-label">Streak</span>
+                    <span class="stat-value" id="sidebar-streak-count">1 Hari</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-label">Total XP</span>
+                    <span class="stat-value" id="sidebar-xp-count">0 XP</span>
+                </div>
+                <div class="xp-progress-bar-wrap">
+                    <div class="xp-progress-fill" id="sidebar-xp-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="btn-reset-data" id="btn-reset-progress" title="Reset Semua Progress Sesi">
+                    <span>🔄 Reset Progress</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content View Area -->
+        <main class="app-main-content">
+            <!-- Top Header Status Bar -->
+            <header class="top-status-header">
+                <div class="header-title-area" id="header-title-area">
+                    <h1 class="page-title" id="page-title">Dashboard Pembelajaran</h1>
+                    <p class="page-subtitle" id="page-subtitle">Selamat datang kembali! Lanjutkan perjalanan belajar C++ kamu.</p>
+                </div>
+                <div class="header-actions">
+                    <div class="progress-pill">
+                        <span>Kurikulum XI-4</span>
+                        <strong id="header-progress-percent">0% Selesai</strong>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic View Container -->
+            <div id="view-container" class="view-container">
+                <!-- Views will be dynamically injected here: Dashboard, Roadmap, Lesson Engine, Practice -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data/lessons-data.js"></script>
+    <script src="js/engine/progress-store.js"></script>
+    <script src="js/engine/cpp-executor.js"></script>
+    <script src="js/engine/quiz-engine.js"></script>
+    <script src="js/engine/lesson-engine.js"></script>
+    <script src="js/ui/dashboard-view.js"></script>
+    <script src="js/ui/roadmap-view.js"></script>
+    <script src="js/ui/editor-view.js"></script>
+    <script src="js/ui/ai-tutor.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
