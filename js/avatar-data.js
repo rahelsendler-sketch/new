@@ -126,6 +126,8 @@ const ACCESSORIES = {
     chef: { id: 'chef', name: 'Topi Kolonel', icon: '👨‍🍳' },
     party: { id: 'party', name: 'Topi Ultah / Pesta', icon: '🥳' },
     headband: { id: 'headband', name: 'Ikat Kepala Pejuang', icon: '🥷' },
+    broom: { id: 'broom', name: 'Sapu Piket Kelas', icon: '🧹' },
+    laptop: { id: 'laptop', name: 'Laptop Belajar', icon: '💻' },
     halo: { id: 'halo', name: 'Cincin Malaikat', icon: '😇' }
 };
 
@@ -653,6 +655,26 @@ function renderChickenSVG(config = {}) {
                     <circle cx="62" cy="47" r="2.5" fill="#ffffff"/>
                     <path d="M86,47 L95,44 L92,53 Z" fill="#dc2626"/>
                     <path d="M86,49 L94,56 L89,58 Z" fill="#b91c1c"/>
+                </g>
+            `;
+            break;
+
+        case 'broom':
+            accessoryMarkup = `
+                <g class="chicken-accessory" transform="translate(10, ${accYOffset + 12})">
+                    <rect x="75" y="20" width="4" height="60" fill="#92400e" rx="1.5"/>
+                    <path d="M68,75 L86,75 L92,105 L62,105 Z" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                    <path d="M65,85 L89,85" stroke="#b45309" stroke-width="2"/>
+                </g>
+            `;
+            break;
+
+        case 'laptop':
+            accessoryMarkup = `
+                <g class="chicken-accessory" transform="translate(0, ${accYOffset + 24})">
+                    <rect x="42" y="70" width="44" height="26" rx="3" fill="#334155" stroke="#1e293b" stroke-width="1.5"/>
+                    <path d="M36,96 L92,96 L88,102 L40,102 Z" fill="#64748b" stroke="#334155" stroke-width="1"/>
+                    <circle cx="64" cy="83" r="3" fill="#38bdf8"/>
                 </g>
             `;
             break;

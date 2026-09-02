@@ -236,15 +236,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // E. Miss Eva Marah (Teacher Anger Event)
+    const btnActionWipe = document.getElementById('btn-action-wipe');
+
+    // E. Miss Eva Masuk & Marah (Teacher Entrance Event)
     btnActionTeacher.addEventListener('click', () => {
         soundFX.playSpicy();
-        arena.triggerTeacherRage('Meja 6');
+        arena.triggerTeacherEntrance();
         const missEva = Array.from(arena.chickens.values()).find(c => c.isTeacher);
         if (missEva) {
-            chat.sendMessage(missEva.id, `DIAM SEMUANYA! Siapa itu di Meja 6 yang kejar-kejaran dan lempar-lempar sambal di kelas saya?! 👩‍🏫💢`, false, true);
+            chat.sendMessage(missEva.id, `DIAM SEMUANYA! Siapa itu yang ribut dan lempar-lempar saos botol & kentang di kelas saya?! 👩‍🏫💢`, false, true);
         }
     });
+
+    // F. Hapus Papan Tulis Kelas
+    if (btnActionWipe) {
+        btnActionWipe.addEventListener('click', () => {
+            soundFX.playPop();
+            const blackboard = document.getElementById('main-blackboard');
+            if (blackboard) {
+                spawnParticleBurst(window.innerWidth * 0.45, 120, '🧽✨');
+                const warningMsg = document.getElementById('blackboard-warning-msg');
+                if (warningMsg) {
+                    warningMsg.innerHTML = '✨ <em>Papan tulis bersih!</em> Jadwal piket kelas XI-4 berjalan tertib! 🧹🧽';
+                }
+            }
+            chat.sendMessage(userChicken.id, `Bebas! Papan tulis & catatan fisika udah dibersihin sama piket kelas XI-4! 🧽✨`, true);
+        });
+    }
 
     // Bell click on Teacher Desk
     if (teacherDeskBell) {

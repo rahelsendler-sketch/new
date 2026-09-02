@@ -534,9 +534,28 @@ class ArenaManager {
     shootSauce(fromChicken, toChicken, sauceIcon = '🌶️') {
         if (!fromChicken || !toChicken) return;
 
+        const isFries = sauceIcon === '🍟' || sauceIcon.includes('Fries') || sauceIcon.includes('Kentang');
+
         const proj = document.createElement('div');
-        proj.className = 'flying-sauce-projectile';
-        proj.textContent = sauceIcon;
+        proj.className = `flying-projectile-node ${isFries ? 'fries-box-projectile' : 'sauce-bottle-projectile'}`;
+        
+        if (isFries) {
+            // Realistic KFC Red Fries Box with Golden Fries
+            proj.innerHTML = `
+                <div class="kfc-fries-container-3d">
+                    <div class="fries-box-body">🍟 KFC</div>
+                </div>
+            `;
+        } else {
+            // Realistic Red/Yellow Sauce Squeeze Bottle
+            proj.innerHTML = `
+                <div class="sauce-bottle-3d">
+                    <div class="bottle-cap"></div>
+                    <div class="bottle-body">🥫 SAUS</div>
+                </div>
+            `;
+        }
+
         proj.style.left = (fromChicken.x + 40) + 'px';
         proj.style.top = (fromChicken.y + 40) + 'px';
 
@@ -547,26 +566,48 @@ class ArenaManager {
         const targetX = toChicken.x + 40;
         const targetY = toChicken.y + 40;
 
-        const duration = 480;
+        const duration = 520;
         const startTime = performance.now();
 
         const animateProj = (now) => {
             const progress = Math.min(1, (now - startTime) / duration);
             const curX = startX + (targetX - startX) * progress;
-            const arcY = Math.sin(progress * Math.PI) * -80;
+            const arcY = Math.sin(progress * Math.PI) * -110;
             const curY = startY + (targetY - startY) * progress + arcY;
+            const spinDegree = progress * 1080;
 
-            proj.style.transform = `translate3d(${curX - startX}px, ${curY - startY}px, 0) rotate(${progress * 720}deg) scale(${1 + Math.sin(progress * Math.PI) * 0.5})`;
+            proj.style.transform = `translate3d(${curX - startX}px, ${curY - startY}px, 0) rotate(${spinDegree}deg) scale(${1 + Math.sin(progress * Math.PI) * 0.45})`;
 
             if (progress < 1) {
                 requestAnimationFrame(animateProj);
             } else {
                 if (proj.parentNode) proj.parentNode.removeChild(proj);
-                toChicken.setSpicyHit(3000);
+                toChicken.setSpicyHit(3200);
+
+                // Check noise level -> Miss Eva arrives if too noisy!
+                this.noiseLevel = (this.noiseLevel || 0) + 1;
+                if (this.noiseLevel >= 3) {
+                    this.noiseLevel = 0;
+                    setTimeout(() => {
+                        this.triggerTeacherEntrance();
+                    }, 400);
+                }
             }
         };
 
         requestAnimationFrame(animateProj);
+    }
+
+    triggerTeacherEntrance() {
+        const missEva = Array.from(this.chickens.values()).find(c => c.isTeacher || c.name.includes('Miss Eva'));
+        if (!missEva) return;
+
+        // Miss Eva suddenly enters from the classroom door (x: 50, y: 160)
+        missEva.x = 50;
+        missEva.y = 160;
+        missEva.setTarget(this.bounds.width * 0.4, this.bounds.height * 0.35);
+
+        this.triggerTeacherRage('Kelas XI-4');
     }
 
     triggerTeacherRage(culpritDeskName = 'Meja 6') {
@@ -584,8 +625,9 @@ class ArenaManager {
             setTimeout(() => blackboard.classList.remove('teacher-angry-mode'), 4000);
         }
 
-        if (missEva && missEva.el) {
-            missEva.el.classList.add('is-angry');
+        if (missEva) {
+            if (missEva.el) missEva.el.classList.add('is-angry');
+            missEva.triggerDance(3000);
             setTimeout(() => {
                 if (missEva.el) missEva.el.classList.remove('is-angry');
             }, 4500);
@@ -593,7 +635,7 @@ class ArenaManager {
 
         this.chickens.forEach(c => {
             if (!c.isTeacher) {
-                c.setFrozen(2500);
+                c.setFrozen(3000);
             }
         });
     }
