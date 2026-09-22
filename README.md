@@ -1,4 +1,8 @@
 ![Demo KFC Chat](Screenshot-2026-09-22-173023.png)
+git add "Screenshot 2026-09-22 173023.png"
+git add "Proyek 1.md"
+git commit -m "docs: tambah screenshot kfc chat"
+git push origin main
 
 # KFC-Chat XI-4
 
