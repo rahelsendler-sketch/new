@@ -1,4 +1,4 @@
-![Demo KFC Chat](Screenshot 2026-09-22 173023.png)
+![Demo KFC Chat](Screenshot-2026-09-22-173023.png)
 
 # KFC-Chat XI-4
 
