@@ -1,3 +1,5 @@
+![Demo KFC Chat](nama-file-screenshot.png)
+
 # KFC-Chat XI-4
 
 KFC-Chat XI-4 merupakan aplikasi web perpesanan visual interaktif yang mengadaptasi suasana ruang kelas XI-4 ke dalam konsep unik bertema menu ayam KFC. Seluruh siswa direpresentasikan sebagai karakter avatar potongan ayam krispi yang jenaka, mulai dari paha bawah, sayap, dada, hingga kentang goreng, didampingi Miss Eva selaku wali kelas berwujud ayam utuh. Berlatar sebelas meja kelas dengan engine fisika dua dimensi, pengguna dapat berinteraksi bebas melalui aksi komedi seperti perang saus sambal, kejar-kejaran, dan mencuri kentang goreng.
